@@ -6,45 +6,45 @@ anyenv:
 homebrew:
   applications:
     - alfred
-	- android-studio
-	- appcleaner
-	- bettertouchtool
-	- docker
-	- clipmenu
-	- flux
-	- franz
-	- google-chrome
-	- google-drive
-	- google-japanese-ime
-	- hyperswitch
-	- iterm2
+    - android-studio
+    - appcleaner
+    - bettertouchtool
+    - docker
+    - clipmenu
+    - flux
+    - franz
+    - google-chrome
+    - google-drive
+    - google-japanese-ime
+    - hyperswitch
+    - iterm2
     - jetbrains-toolbox
-	- kap
-	- karabiner
-	- kindle
-	- r
-	- vanilla
+    - kap
+    - karabiner
+    - kindle
+    - r
+    - vanilla
 
   packages:
     - automake
-	- carthage
-	- cocoapods
-	- docker
-	- fish
-	- gcc
-	- git
-	- git-flow
-	- gradle
-	- jpeg
-	- mecab
-	- mycli
-	- nkf
-	- peco
-	- rmtrash
-	- sox
-	- tmux
-	- tree
-	- wget
+    - carthage
+    - cocoapods
+    - docker
+    - fish
+    - gcc
+    - git
+    - git-flow
+    - gradle
+    - jpeg
+    - mecab
+    - mycli
+    - nkf
+    - peco
+    - rmtrash
+    - sox
+    - tmux
+    - tree
+    - wget
 
 ruby:
   versions:
