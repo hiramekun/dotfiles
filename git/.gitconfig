@@ -1,0 +1,23 @@
+[user]
+	name = hiramekun
+	email = thescript1210@gmail.com
+
+[alias]
+	st = status
+	ps = push
+	pl = pull
+[diff]
+	compactionHeuristic = true
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = ~/.stCommitMsg
+[push]
+	default = upstream
