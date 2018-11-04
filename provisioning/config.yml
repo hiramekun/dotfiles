@@ -23,6 +23,7 @@ homebrew:
     - karabiner-elements
     - kindle
     - r
+	- xquartz
     - vanilla
 
   packages:
@@ -31,10 +32,8 @@ homebrew:
     - cocoapods
     - docker
     - fish
-    - gcc
     - git
     - git-flow
-    - gradle
     - jpeg
     - mecab
     - mycli
