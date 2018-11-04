@@ -33,6 +33,7 @@ homebrew:
     - docker
     - fish
     - ffmpeg
+    - gawk
     - git
     - git-flow
     - jpeg
