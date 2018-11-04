@@ -23,7 +23,7 @@ homebrew:
     - karabiner-elements
     - kindle
     - r
-	- xquartz
+    - xquartz
     - vanilla
 
   packages:
@@ -32,7 +32,7 @@ homebrew:
     - cocoapods
     - docker
     - fish
-	- ffmpeg
+    - ffmpeg
     - git
     - git-flow
     - jpeg
@@ -40,6 +40,7 @@ homebrew:
     - mycli
     - nkf
     - peco
+    - pyenv-vurtualenv
     - rmtrash
     - sox
     - tmux
