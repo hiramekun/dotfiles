@@ -32,6 +32,7 @@ homebrew:
     - cocoapods
     - docker
     - fish
+	- ffmpeg
     - git
     - git-flow
     - jpeg
