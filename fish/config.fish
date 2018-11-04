@@ -97,13 +97,8 @@ function do_enter
 end
 
 set fish_greeting ""
-set -gx OMF_PATH "/Users/takaakihirano/.local/share/omf"
-set -gx OMF_CONFIG "/Users/takaakihirano/.config/omf"
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
-set -gx GOPATH "~/go"
-set PATH ~/anaconda/bin ~/Library/Android/sdk/platform-tools/ ~/Library/Android/sdk/tools/ /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin  ~/go/bin ~/.anyenv/bin
-source $OMF_PATH/init.fish
-source ~/anaconda/etc/fish/conf.d/conda.fish
+set PATH ~/Library/Android/sdk/platform-tools/ ~/Library/Android/sdk/tools/ /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin
 
-#eval (anyenv init - | source)
+eval (anyenv init - | source)
