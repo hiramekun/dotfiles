@@ -1,4 +1,5 @@
 .DS_Store
+.Rhistory
 .idea
 *.iml
 venv/

@@ -25,7 +25,6 @@ homebrew:
     - kindle
     - macs-fan-control
     - mathpix-snipping-tool
-    - r
     - xquartz
     - vagrant
     - vanilla
@@ -48,6 +47,7 @@ homebrew:
     - pandoc
     - peco
     - pyenv-vurtualenv
+    - r
     - rmtrash
     - sox
     - tmux
