@@ -27,8 +27,9 @@ homebrew:
     - mathpix-snipping-tool
     - r
     - xquartz
-    - vurtualbox
+    - vagrant
     - vanilla
+    - vurtualbox
 
   packages:
     - automake
