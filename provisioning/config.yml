@@ -41,6 +41,7 @@ homebrew:
     - mecab
     - mycli
     - nkf
+    - pandoc
     - peco
     - pyenv-vurtualenv
     - rmtrash
