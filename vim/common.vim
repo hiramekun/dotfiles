@@ -111,7 +111,7 @@ set encoding=utf-8
 "colorscheme
 syntax on
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 hi MatchParen cterm=bold ctermbg=none ctermfg=cyan
 hi Normal ctermbg=none
 set cursorline
