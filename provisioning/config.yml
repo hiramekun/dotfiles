@@ -24,8 +24,10 @@ homebrew:
     - karabiner-elements
     - kindle
     - macs-fan-control
+    - mathpix-snipping-tool
     - r
     - xquartz
+    - vurtualbox
     - vanilla
 
   packages:
