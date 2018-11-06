@@ -71,7 +71,7 @@ alias ash='adb shell'
 alias abres='adb kill-server; and adb start-server'
 
 alias les='less'
-alias vl='/usr/local/Cellar/vim/8.1.0450/share/vim/vim81/macros/less.sh'
+alias vl='/usr/share/vim/vim80/macros/less.sh'
 alias vljis='vl -c ":e ++enc=shift_jis"'
 alias vimjis='vim -c ":e ++enc=shift_jis"'
 
