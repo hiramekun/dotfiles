@@ -46,12 +46,12 @@ homebrew:
     - nkf
     - pandoc
     - peco
-    - pyenv-vurtualenv
     - r
     - rmtrash
     - sox
     - tmux
     - tree
+    - vim
     - wget
 
 ruby:
