@@ -15,6 +15,7 @@ end
 alias copy=copy()
 alias ls="ls -a -G"
 alias rm='rmtrash'
+alias activate='. ./venv/bin/activate.fish'
 alias emacs="emacs -nw"
 alias tobom='nkf --overwrite --oc=UTF-8-BOM'
 alias toutf8='nkf --overwrite --oc=UTF-8'
