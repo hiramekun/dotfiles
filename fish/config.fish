@@ -100,6 +100,6 @@ end
 set fish_greeting ""
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
-set PATH ~/Library/Android/sdk/platform-tools/ ~/Library/Android/sdk/tools/ /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin
 
 eval (anyenv init - | source)
