@@ -138,68 +138,28 @@ autocmd FileType css imap <buffer><expr><tab>
 ""F5 compile{{{
 command! Run call s:Run()
 nnoremap <F5> :w<CR>:Run<CR>
+
 function! s:Run()
 	let e = expand("%:e")	
-	if e == ".*vim.*"
-		:Vim
-	endif
-	if e == "vim"
-		:Vim
-	endif
-	if e == "c"
+	if e == "c" 
 		:Gcc
 	endif
-	if e == "java"
-		:Java
+    if e == "cpp"
+		:Gpp
 	endif
-	if e == "tex"
-		:TeX
-	endif
-	if e == "data" || e == "gp"
-		:Gplt
-	endif
-	if e == 'v'
-		:Vrlg
-	endif
-	if e == "lisp" || e == "cl"
-		:CLisp
-	endif
-endfunction
-
-command! Vim call s:Vim()
-function! s:Vim()
-	:source %
 endfunction
 
 command! Gcc call s:Gcc()
 function! s:Gcc()
-	:!gcc % -o %:r -g -lm &&  %:p:r
+	:!gcc % -o %:r -g -lm ;  %:p:r
 endfunction
 
-command! Java call s:Java()
-function! s:Java()
-	:!javac % && java %:r
+command! Gpp call s:Gpp()
+function! s:Gpp()
+	:!g++ % -o %:r -g -lm ;  %:p:r
 endfunction
 
-command! TeX call s:TeX()
-function! s:TeX()
-	:!platex % && dvipdfm %:r.dvi && open %:r.pdf
-endfunction
 
-command! Gplt call s:Gplt()
-function! s:Gplt()
-	:! (cd %:h; (cat %:t:r.gp; echo "pause 100") | gnuplot)
-endfunction
-
-command! Vrlg call s:Vrlg()
-function! s:Vrlg()
-	:!iverilog % && ./a.out
-endfunction
-
-command! CLisp call s:CLisp()
-function! s:CLisp()
-	:!clisp %
-endfunction
 ""}}}
 
 "" unite.vim{{{
