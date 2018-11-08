@@ -29,6 +29,7 @@ homebrew:
     - xquartz
     - vagrant
     - vanilla
+    - visual-studio-code
     - vurtualbox
 
   packages:
