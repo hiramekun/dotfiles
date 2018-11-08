@@ -6,3 +6,4 @@ venv/
 CMakeList.txt
 cmake-build-debug/
 *__pycache__*
+*.dSYM/
