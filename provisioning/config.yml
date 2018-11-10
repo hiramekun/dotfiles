@@ -14,7 +14,6 @@ homebrew:
     - flux
     - franz
     - google-chrome
-    - google-drive
     - google-backup-and-sync
     - google-japanese-ime
     - hyperswitch
