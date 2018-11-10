@@ -44,7 +44,8 @@ compare_versions() {
 #==============================================================================================
 print_header() {
   printf "\e[34m"
-  echo '--------------------------------------------------------------------------------' echo '                                                                                '
+  echo '--------------------------------------------------------------------------------'
+  echo '                                                                                '
   echo '                 888          888     .d888 d8b 888                             '
   echo '                 888          888    d88P"  Y8P 888                             '
   echo '                 888          888    888        888                             '
@@ -54,9 +55,9 @@ print_header() {
   echo '            Y88b 888 Y88..88P Y88b.  888    888 888 Y8b.          X88           '
   echo '             "Y88888  "Y88P"   "Y888 888    888 888  "Y8888   88888P"           '
   echo '                                                                                '
-  echo '                       Harder, Better, Faster, Stronger                         '
+  echo '                           comfortable envs for you                             '
   echo '                                                                                '
-  echo '                         github.com/hiramekun/dotfiles                            '
+  echo '                         github.com/hiramekun/dotfiles                          '
   echo '                                                                                '
   echo '--------------------------------------------------------------------------------'
   printf "\e[0m\n"
