@@ -1,3 +1,3 @@
 function copy
-  builtin echo $argv | pbcopy
+  builtin echo $argv | perl -pe 'chomp'| pbcopy
 end
