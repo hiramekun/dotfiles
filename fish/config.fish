@@ -3,16 +3,6 @@ function fish_user_key_bindings
   bind \cj do_enter
 end
 
-function cd 
-  builtin cd $argv
-  ls
-end
-
-function copy
-  builtin echo $argv | pbcopy
-end
-
-alias copy=copy()
 alias ls="ls -a -G"
 alias rm='rmtrash'
 alias activate='. ./venv/bin/activate.fish'
@@ -69,26 +59,6 @@ alias vljis='vl -c ":e ++enc=shift_jis"'
 alias vimjis='vim -c ":e ++enc=shift_jis"'
 
 alias difcut='diff --strip-trailing-cr'
-
-function do_enter
-  set -l query (commandline)
-
-  if test -n $query
-    echo
-    eval $query
-    commandline ''
-  else
-    echo
-    ls
-    if test (git rev-parse --is-inside-work-tree 2> /dev/null)
-      echo
-      echo -e "\e[0;33m--- git status ---\e[0m"
-      git status -sb
-	  echo
-    end
-  end
-  commandline -f repaint
-end
 
 set fish_greeting ""
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
