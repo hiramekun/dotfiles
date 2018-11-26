@@ -59,16 +59,9 @@ alias grem='git rebase master'
 alias gp='git remote prune origin'
 alias gchp='git cherry-pick'
 
-#ssh
-alias oakleafl='ssh -l t30005 oakleaf-fx-4'
-
 #tmux
 alias tml='tmux ls'
 alias tma='tmux a'
-
-#adb
-alias ash='adb shell'
-alias abres='adb kill-server; and adb start-server'
 
 alias les='less'
 alias vl='/usr/share/vim/vim80/macros/less.sh'
