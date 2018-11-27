@@ -59,7 +59,7 @@ alias difcut='diff --strip-trailing-cr'
 set fish_greeting ""
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
-set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/AudioDetections/cloud_text_to_speech_sample/endless-empire-211804-f5af7674b159.json"
+set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/endless-empire-211804-f5af7674b159.json"
 set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin 
 
 #init rbenv
