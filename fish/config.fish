@@ -43,6 +43,7 @@ alias gred='git rebase develop'
 alias grem='git rebase master'
 alias gp='git remote prune origin'
 alias gchp='git cherry-pick'
+alias vconf='vim ~/dotfiles/fish/config.fish'
 
 #tmux
 alias tml='tmux ls'
@@ -58,6 +59,62 @@ alias difcut='diff --strip-trailing-cr'
 set fish_greeting ""
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin
+set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/AudioDetections/cloud_text_to_speech_sample/endless-empire-211804-f5af7674b159.json"
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin 
 
-eval (anyenv init - | source)
+#init rbenv
+# rbenv
+set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
+set -x PATH $PATH "$RBENV_ROOT/bin"
+set -gx PATH '/Users/hiramekun/.anyenv/envs/rbenv/shims' $PATH
+set -gx RBENV_SHELL fish
+source '/Users/hiramekun/.anyenv/envs/rbenv/libexec/../completions/rbenv.fish'
+command rbenv rehash 2>/dev/null
+function rbenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    source (rbenv "sh-$command" $argv|psub)
+  case '*'
+    command rbenv "$command" $argv
+  end
+end
+
+#init pyenv
+set -x PYENV_ROOT "$HOME/.anyenv/envs/pyenv"
+set -x PATH $PATH "$PYENV_ROOT/bin"
+set -gx PATH '/Users/hiramekun/.anyenv/envs/pyenv/shims' $PATH
+set -gx PYENV_SHELL fish
+source '/Users/hiramekun/.anyenv/envs/pyenv/libexec/../completions/pyenv.fish'
+command pyenv rehash 2>/dev/null
+function pyenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    source (pyenv "sh-$command" $argv|psub)
+  case '*'
+    command pyenv "$command" $argv
+  end
+end
+
+#ndenv
+set -x NDENV_ROOT "$HOME/.anyenv/envs/ndenv"
+set -x PATH $PATH "$NDENV_ROOT/bin"
+set -gx PATH "$NDENV_ROOT/shims" $PATH
+set -gx NDENV_SHELL fish
+command ndenv rehash 2>/dev/null
+function ndenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    eval (ndenv sh-"$command" $argv|psub)
+  case '*'
+    command ndenv "$command" $argv
+  end
+end
