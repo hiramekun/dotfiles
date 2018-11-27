@@ -8,3 +8,5 @@ cmake-build-debug/
 *__pycache__*
 *.dSYM/
 .vscode
+a.out
+*.swp
