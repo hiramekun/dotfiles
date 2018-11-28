@@ -1,8 +1,6 @@
 .DS_Store
 __pycache__
 *.pyc
-
 vim/dein/*
-
 fishd*
 provisioning/playbook.retry
