@@ -66,6 +66,10 @@ ruby:
     - sstephenson/rbenv-default-gems
     - sstephenson/rbenv-gem-rehash
 
+nodejs:
+  versions:
+    - "8.11.3"
+
 python:
   versions:
     - '3.7.0'

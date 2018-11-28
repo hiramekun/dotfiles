@@ -27,7 +27,9 @@
     # lang
     #-----------------------------------------------
     - role: ruby
-      tags: ['lang', ruby]
+      tags: ['lang', 'ruby']
+    - role: nodejs
+      tags: ['lang', 'nodejs']
     - role: python
-      tags: ['lang', python]
+      tags: ['lang', 'python']
 
