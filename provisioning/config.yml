@@ -47,7 +47,6 @@ homebrew:
     - mecab
     - mycli
     - nkf
-    - nodejs
     - pandoc
     - peco
     - r
