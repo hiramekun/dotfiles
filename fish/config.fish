@@ -60,7 +60,9 @@ set fish_greeting ""
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
 set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/endless-empire-211804-f5af7674b159.json"
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin 
+set -gx JAVA_HOME  "/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home"
+set -gx CLASSPATH "/Users/hiramekun/MADSSAGS/MADS/mads-all-libs.jar"
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin {$JAVA_HOME}/bin
 
 #init rbenv
 # rbenv
