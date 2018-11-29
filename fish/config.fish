@@ -1,3 +1,14 @@
+#vars
+set -gx LD_LIBRARY_PATH "/usr/local/lib"
+set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
+set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/endless-empire-211804-f5af7674b159.json"
+set -gx JAVA_HOME  "/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home"
+set -gx CLASSPATH "/Users/hiramekun/MADSSAGS/MADS/mads-all-libs.jar"
+
+#path
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin {$JAVA_HOME}/bin
+
+
 alias ls="ls -a -G"
 alias rm='rmtrash'
 alias activate='. ./venv/bin/activate.fish'
@@ -57,15 +68,8 @@ alias vimjis='vim -c ":e ++enc=shift_jis"'
 alias difcut='diff --strip-trailing-cr'
 
 set fish_greeting ""
-set -gx LD_LIBRARY_PATH "/usr/local/lib"
-set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
-set -gx GOOGLE_APPLICATION_CREDENTIALS "/Users/hiramekun/endless-empire-211804-f5af7674b159.json"
-set -gx JAVA_HOME  "/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home"
-set -gx CLASSPATH "/Users/hiramekun/MADSSAGS/MADS/mads-all-libs.jar"
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin {$JAVA_HOME}/bin
 
 #init rbenv
-# rbenv
 set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
 set -x PATH $PATH "$RBENV_ROOT/bin"
 set -gx PATH '/Users/hiramekun/.anyenv/envs/rbenv/shims' $PATH
@@ -103,7 +107,7 @@ function pyenv
   end
 end
 
-#ndenv
+#init ndenv
 set -x NDENV_ROOT "$HOME/.anyenv/envs/ndenv"
 set -x PATH $PATH "$NDENV_ROOT/bin"
 set -gx PATH "$NDENV_ROOT/shims" $PATH
