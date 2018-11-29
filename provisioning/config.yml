@@ -43,6 +43,7 @@ homebrew:
     - gawk
     - git
     - git-flow
+    - htop
     - jpeg
     - mecab
     - mycli
