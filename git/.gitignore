@@ -3,7 +3,7 @@
 .idea
 *.iml
 venv/
-CMakeList.txt
+CMakeLists.txt
 cmake-build-debug/
 *__pycache__*
 *.dSYM/
