@@ -3,7 +3,7 @@
  ```
  $ git pull https://github.com/hiramekun/dotfiles.git
  $ cd dotfiles
- $ ./up
+ $ sh up
  ``` 
  
   - fish shell
