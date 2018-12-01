@@ -1,37 +1,39 @@
- - set_fact:
-    nodejs: {}
+- set_fact:
+   nodejs: {}
 
- - name: check ndenv
-   command: |
-     bash -lc 'which ndenv'
-   register: which_ndenv
-   ignore_errors: yes
+- name: check ndenv
+  command: |
+    bash -lc 'which ndenv'
+  register: which_ndenv
+  ignore_errors: yes
 
- - name: install ndenv
-   command: |
-     bash -lc 'anyenv install ndenv'
-   which: which_ndenv.rc > 0
+- name: install ndenv
+  command: |
+    bash -lc 'anyenv install ndenv'
+  when: which_ndenv.rc > 0
 
- - name: get install versions
-   command: |
-     bash -lc 'ndenv versions'
-   register: installed_versions
- 
- - name: install nodejs
-   command: |
-     bash - lc 'ndenv install {{ item | quote }}'
-   when: |
-     nodejs.versions and installed_versions.stdout.find(item) == -1
-   with_items: '{{ nodejs.versions }}'
- 
- - name: set global nodejs
-   command: |
-     bash -lc 'ndenv global {{ nodejs.versions[0] | quote }}'
-   when: nodejs.versions
+- name: get install versions
+  command: |
+    bash -lc 'ndenv versions'
+  register: installed_versions
 
- - name: install npm packages
-   npm:
-     name: '{{ item }}'
-     global: yes
-   with_items: '{{ nodejs.packages }}'
-   when: nodejs.packages
+- name: install nodejs
+  command: |
+    bash - lc 'ndenv install {{ item | quote }}'
+  when: |
+    nodejs.versions and installed_versions.stdout.find(item) == -1
+  with_items: '{{ nodejs.versions }}'
+
+- name: set global nodejs
+  command: |
+    bash -lc 'ndenv global {{ nodejs.versions[0] | quote }}'
+  when: nodejs.versions
+
+- name: rehash
+  shell: |
+    if [ -f "$DOTSHIM_FILE" ]; then
+      rm -f "$DOTSHIM_FILE"
+    fi
+    bash -lc 'ndenv rehash'
+  environment:
+    DOTSHIM_FILE: '{{ anyenv.envs_dir }}/ndenv/.ndenv-shim'

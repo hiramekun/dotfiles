@@ -19,6 +19,7 @@ homebrew:
     - google-japanese-ime
     - hyperswitch
     - iterm2
+    - java8
     - jetbrains-toolbox
     - kap
     - karabiner-elements
@@ -69,7 +70,7 @@ ruby:
 
 nodejs:
   versions:
-    - "8.11.3"
+    - "v8.11.3"
 
 python:
   versions:
@@ -77,6 +78,10 @@ python:
 
   packages:
     - vim-vint
+
+java:
+  versions:
+    - '1.8'
 
 link:
   bash/.bash_profile:         .bash_profile

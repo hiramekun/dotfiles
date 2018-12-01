@@ -1,0 +1,39 @@
+- set_fact:
+   nodejs: {}
+
+- name: check jenv
+  command: |
+    bash -lc 'which jenv'
+  register: which_jenv
+  ignore_errors: yes
+
+- name: install jenv
+  command: |
+    bash -lc 'anyenv install jenv'
+  when: which_jenv.rc > 0
+
+- name: get install versions
+  command: |
+    bash -lc 'jenv versions'
+  register: installed_versions
+
+- name: add java
+  command: |
+    bash - lc 'jenv add $(/usr/libexec/java_home -v {{ item | quote }})'
+  when: |
+    java.versions and installed_versions.stdout.find(item) == -1
+  with_items: '{{ java.versions }}'
+
+- name: set global java
+  command: |
+    bash -lc 'jenv global {{ java.versions[0] | quote }}'
+  when: java.versions
+
+- name: rehash
+  shell: |
+    if [ -f "$DOTSHIM_FILE" ]; then
+      rm -f "$DOTSHIM_FILE"
+    fi
+    bash -lc 'jenv rehash'
+  environment:
+    DOTSHIM_FILE: '{{ anyenv.envs_dir }}/jenv/.jenv-shim'

@@ -32,4 +32,6 @@
       tags: ['lang', 'nodejs']
     - role: python
       tags: ['lang', 'python']
+    - role: java
+      tags: ['lang', 'java']
 
