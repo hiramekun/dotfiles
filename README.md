@@ -2,6 +2,7 @@
  Then follow below.
  ```
  $ git pull https://github.com/hiramekun/dotfiles.git
+ $ cd dotfiles
  $ sh up
  ``` 
  
