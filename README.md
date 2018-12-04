@@ -9,4 +9,10 @@
   - fish shell
   - vim
   - karabiner settings
-  - etc...
+  - tmux
+  - anyenv
+    - rbenv
+    - pyenv
+    - ndenv
+    - jenv
+  - install apps and packages by homebrew
