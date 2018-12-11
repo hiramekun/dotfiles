@@ -1,10 +1,11 @@
 #vars
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
+set -gx GOPATH "$HOME/go"
 set fish_greeting ""
 
 #path
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin 
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin
 
 alias ls="ls -a -G"
 alias rm='rmtrash'

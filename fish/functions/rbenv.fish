@@ -1,3 +1,4 @@
+command rbenv rehash 2>/dev/null
 function rbenv
   set command $argv[1]
   set -e argv[1]

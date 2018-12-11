@@ -1,3 +1,4 @@
+command ndenv rehash 2>/dev/null
 function ndenv
   set command $argv[1]
   set -e argv[1]

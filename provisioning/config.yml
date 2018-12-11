@@ -72,6 +72,10 @@ nodejs:
   versions:
     - "v8.11.3"
 
+golang:
+  versions:
+    - "1.10.0"
+
 python:
   versions:
     - '3.7.0'

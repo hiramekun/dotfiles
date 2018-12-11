@@ -1,3 +1,4 @@
+command pyenv rehash 2>/dev/null
 function pyenv
   set command $argv[1]
   set -e argv[1]
