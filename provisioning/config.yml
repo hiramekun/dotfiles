@@ -96,6 +96,7 @@ link:
   config/.aws/config:         .aws/config
   git/.gitconfig:             .gitconfig
   git/.gitignore:             .gitignore
+  ide/.ideavimrc:             .ideavimrc
   vim/.vimrc:                 .vimrc
   tmux/.tmux.conf:            .tmux.conf
   karabiner:                  .config/karabiner
