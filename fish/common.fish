@@ -13,8 +13,8 @@ alias emacs="emacs -nw"
 
 alias tobom='nkf --overwrite --oc=UTF-8-BOM'
 alias toutf8='nkf --overwrite --oc=UTF-8'
-alias traen='trans {en=ja}'
-alias traja='trans {ja=en}'
+alias traen='trans {en=ja} -no-auto'
+alias traja='trans {ja=en} -no-auto'
 
 #git
 alias gbr='git branch'
