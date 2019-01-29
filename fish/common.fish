@@ -6,6 +6,8 @@ set fish_greeting ""
 
 #path
 set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin
+alias g++="g++-8"
+alias gcc="gcc-8"
 
 alias ls="ls -a -G"
 alias rm='rmtrash'
