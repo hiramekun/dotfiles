@@ -55,6 +55,7 @@ homebrew:
     - rmtrash
     - sox
     - tmux
+    - translate-shell
     - tree
     - vim
     - wget
