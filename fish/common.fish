@@ -10,6 +10,7 @@ alias g++="g++-8"
 alias gcc="gcc-8"
 
 alias ls="ls -a -G"
+alias lsg="ls | grep"
 alias rm='rmtrash'
 alias emacs="emacs -nw"
 
