@@ -10,3 +10,4 @@ cmake-build-debug/
 .vscode
 a.out
 *.swp
+.ipynb_checkpoints
