@@ -4,6 +4,7 @@ function do_enter
   if test -n $query
     echo
     eval $query
+    echo
     commandline ''
   else
     echo
@@ -12,8 +13,8 @@ function do_enter
       echo
       echo -e "\e[0;33m--- git status ---\e[0m"
       git status -sb
-	  echo
     end
+    echo
   end
   commandline -f repaint
 end
