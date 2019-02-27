@@ -19,7 +19,6 @@ call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('kovisoft/slimv')
 call dein#add('davidhalter/jedi-vim')
-call dein#add('ervandew/supertab')
 
 call dein#end()
 
@@ -33,9 +32,6 @@ augroup texfile
   let md_to_latex  = "pandoc --from=markdown --to=latex"
   autocmd Filetype tex let &formatprg=md_to_latex
 augroup END
-
-let g:SuperTabContextDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:slimv_lisp = 'ros run'
 let g:silmv_impl = 'sbcl'
