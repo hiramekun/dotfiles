@@ -1,5 +1,5 @@
 #vars
-set -gx LANG ja_JP.UTF-8
+set -gx LANG en_US.UTF-8
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
 set -gx GOPATH "$HOME/go"
