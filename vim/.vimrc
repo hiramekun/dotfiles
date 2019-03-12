@@ -41,7 +41,14 @@ nnoremap <silent> ,cl :VimShellInteractive ros -s swank -e '(swank:create-server
 syntax enable
 filetype plugin indent on
 
+"jedi-vim
+autocmd FileType python setlocal completeopt-=preview
+
+
+"neocomplete
 let g:neocomplete#enable_at_startup = 1
+inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
