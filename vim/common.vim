@@ -23,7 +23,11 @@ map! <C-j> <esc>
 inoremap <C-l> <C-p>
 inoremap <C-g> <C-n>
 "insert-parenthesis
-inoremap {<CR> {<CR>}<esc>O inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap ( ()<Left>
 inoremap () ()
 inoremap (( (
 inoremap " ""<Left>
