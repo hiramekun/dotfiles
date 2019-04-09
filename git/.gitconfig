@@ -6,6 +6,7 @@
 	st = status
 	ps = push
 	pl = pull
+    unstage = reset HEAD
 [diff]
 	compactionHeuristic = true
 [core]
