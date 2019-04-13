@@ -194,3 +194,6 @@ let g:vimfiler_as_default_explorer = 1
 let g:auto_save = 1
 " nerdtree
 let NERDTreeShowHidden=1
+
+
+command Vterm :vs|:term ++curwin fish
