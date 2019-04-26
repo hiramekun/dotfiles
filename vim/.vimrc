@@ -131,3 +131,7 @@ endif
 
 " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+
+imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+smap <C-l>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-l>     <Plug>(neosnippet_expand_target)

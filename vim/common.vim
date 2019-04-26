@@ -6,7 +6,6 @@
 "keymap{{{
 "insert-move
 inoremap <C-b> <Left>
-inoremap <C-k> <Left>
 inoremap <C-f> <Right>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
@@ -35,9 +34,7 @@ inoremap "" ""
 
 "normal-move
 noremap j gj
-noremap k gk
 noremap <C-j> <C-y>
-noremap <C-K> <C-e>
 noremap gh 0
 noremap gj L
 noremap gk H
