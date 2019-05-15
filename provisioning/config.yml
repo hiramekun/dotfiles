@@ -52,6 +52,7 @@ homebrew:
     - pandoc
     - peco
     - r
+    - rename
     - rmtrash
     - sox
     - tmux
