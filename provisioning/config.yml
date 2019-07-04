@@ -51,6 +51,7 @@ homebrew:
     - nkf
     - pandoc
     - peco
+    - pipenv
     - r
     - rename
     - rmtrash
