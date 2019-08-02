@@ -31,3 +31,8 @@ set -x PATH $PATH "$JENV_ROOT/bin"
 set -gx PATH "$JENV_ROOT/shims" $PATH
 set -gx JENV_SHELL fish
 set -x JENV_LOADED 1
+
+#init swiftenv
+set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
+set -gx PATH "$SWIFTENV_ROOT/bin" $PATH
+if which swiftenv > /dev/null; status --is-interactive; and source (swiftenv init -|psub); end
