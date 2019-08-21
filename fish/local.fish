@@ -13,5 +13,3 @@ alias lower='python ~/dotfiles/scripts/lower.py'
 
 alias activate='. ./venv/bin/activate.fish'
 alias ocaml='rlwrap ocaml'
-
-alias julius='~/julius/julius/julius'

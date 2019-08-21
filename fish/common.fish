@@ -6,10 +6,11 @@ set -gx GOPATH "$HOME/go"
 set fish_greeting ""
 
 #path
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin /Users/hiramekun/Library/Android/sdk/platform-tools /Users/hiramekun/.local ~/.anyenv/envs/rbenv/versions/2.5.1/bin/
+set PATH ~/julius/julius /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin /Users/hiramekun/Library/Android/sdk/platform-tools /Users/hiramekun/.local ~/.anyenv/envs/rbenv/versions/2.5.1/bin/ 
 alias g++="g++-8"
 alias gcc="gcc-8"
 
+alias v="vim"
 alias ls="ls -a -G"
 alias lsg="ls | grep"
 alias rm='rmtrash'
