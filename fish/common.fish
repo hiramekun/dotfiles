@@ -3,6 +3,7 @@ set -gx LANG en_US.UTF-8
 set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
 set -gx GOPATH "$HOME/go"
+set -gx PAGER "less -R"
 set fish_greeting ""
 
 #path
