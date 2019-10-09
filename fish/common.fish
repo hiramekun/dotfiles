@@ -12,7 +12,7 @@ alias g++="g++-8"
 alias gcc="gcc-8"
 
 alias v="vim"
-alias ls="ls -a -G"
+alias ls="ls -a --color=auto"
 alias lsg="ls | grep"
 alias rm='rmtrash'
 alias emacs="emacs -nw"

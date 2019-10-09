@@ -1,1 +1,13 @@
 set clipboard+=unnamed
+"keymap{{{
+"insert-move
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+"insert-delete
+inoremap <C-d> <Del>
+inoremap <C-u>l <esc>lc$
+inoremap <C-u>h <C-u>

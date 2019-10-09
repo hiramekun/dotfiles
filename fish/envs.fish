@@ -3,7 +3,7 @@ set -x GOENV_ROOT "$HOME/.anyenv/envs/goenv"
 set -x PATH $PATH "$HOME/.anyenv/envs/goenv/bin"
 set -gx PATH "$HOME/.anyenv/envs/goenv/shims" $PATH
 set -gx GOENV_SHELL fish
-source "$GOENV_ROOT/libexec/../completions/goenv.fish"
+source "$GOENV_ROOT/libexec/../completions/goenv.fish" 
 
 #init rbenv
 set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
