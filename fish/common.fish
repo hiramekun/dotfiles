@@ -4,17 +4,18 @@ set -gx LD_LIBRARY_PATH "/usr/local/lib"
 set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
 set -gx GOPATH "$HOME/go"
 set -gx PAGER "less -R"
+set -gx LD_LIBRARY_PATH "/usr/local/cuda-10.1/lib64"
 set fish_greeting ""
 
 #path
-set PATH ~/julius/julius /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin /Users/hiramekun/Library/Android/sdk/platform-tools /Users/hiramekun/.local ~/.anyenv/envs/rbenv/versions/2.5.1/bin/ 
+set PATH ~/julius/julius /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin ~/.anyenv/bin $GOPATH/bin /Users/hiramekun/Library/Android/sdk/platform-tools /Users/hiramekun/.local ~/.anyenv/envs/rbenv/versions/2.5.1/bin/ $HOME/.local/bin /usr/local/cuda-10.1/bin
 alias g++="g++-8"
 alias gcc="gcc-8"
 
 alias v="vim"
 alias ls="ls -a --color=auto"
 alias lsg="ls | grep"
-alias rm='rmtrash'
+#alias rm='rmtrash'
 alias emacs="emacs -nw"
 
 alias tobom='nkf --overwrite --oc=UTF-8-BOM'
