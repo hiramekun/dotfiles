@@ -1,3 +1,3 @@
 function copy
-  builtin echo $argv | perl -pe 'chomp'| pbcopy
+  builtin echo $argv | perl -pe 'chomp'| xsel --clipboard --input
 end

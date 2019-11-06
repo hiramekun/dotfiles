@@ -25,7 +25,7 @@ call dein#end()
 
 source ~/dotfiles/vim/common.vim
 source ~/dotfiles/vim/local.vim
-set clipboard+=unnamed
+set clipboard=unnamedplus
 syntax on
 
 augroup texfile
