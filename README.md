@@ -1,4 +1,7 @@
- First, get Xcode build tools.  
+Inspired by this repository.   
+[creasty/dotfiles](https://github.com/creasty/dotfiles)
+
+First, get Xcode build tools.  
  Then follow below.
  ```
  $ git pull https://github.com/hiramekun/dotfiles.git
