@@ -2,5 +2,4 @@ source "$HOME/dotfiles/fish/local.fish"
 source "$HOME/dotfiles/fish/common.fish"
 source "$HOME/dotfiles/fish/envs.fish"
 
-# opam configuration
-source /Users/hiramekun/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+set -g fish_user_paths "/usr/local/opt/mysql@5.7/bin" $fish_user_paths
