@@ -44,10 +44,12 @@ homebrew:
     - gawk
     - git
     - git-flow
+    - g++
     - htop
     - jpeg
     - mecab
     - mycli
+    - mysql@5.7
     - nkf
     - pandoc
     - peco
@@ -55,6 +57,7 @@ homebrew:
     - r
     - rename
     - rmtrash
+    - sbt
     - sox
     - tmux
     - translate-shell
