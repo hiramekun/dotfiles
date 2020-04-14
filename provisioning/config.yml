@@ -32,7 +32,6 @@ homebrew:
     - vagrant
     - vanilla
     - visual-studio-code
-    - vurtualbox
 
   packages:
     - automake
