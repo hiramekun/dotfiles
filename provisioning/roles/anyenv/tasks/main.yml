@@ -3,7 +3,7 @@
 
 - name: fetch anyenv repo
   git:
-    repo: https://github.com/riywo/anyenv
+    repo: https://github.com/anyenv/anyenv.git
     dest: '{{ anyenv.dir }}'
   when: anyenv.dir
 
