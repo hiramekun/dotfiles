@@ -19,7 +19,7 @@ homebrew:
     - google-japanese-ime
     - hyperswitch
     - iterm2
-    - java8
+    - adoptopenjdk8
     - jetbrains-toolbox
     - kap
     - karabiner-elements
