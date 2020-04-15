@@ -19,7 +19,7 @@
 
 - name: add java
   command: |
-    bash - lc 'jenv add $(/usr/libexec/java_home -v {{ item | quote }})'
+    bash -lc 'jenv add $(/usr/libexec/java_home -v {{ item | quote }})'
   when: |
     java.versions and installed_versions.stdout.find(item) == -1
   with_items: '{{ java.versions }}'
