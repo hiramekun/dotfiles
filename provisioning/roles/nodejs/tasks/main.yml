@@ -19,7 +19,7 @@
 
 - name: install nodejs
   command: |
-    bash - lc 'ndenv install {{ item | quote }}'
+    bash -lc 'ndenv install {{ item | quote }}'
   when: |
     nodejs.versions and installed_versions.stdout.find(item) == -1
   with_items: '{{ nodejs.versions }}'
