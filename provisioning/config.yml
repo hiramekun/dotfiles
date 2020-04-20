@@ -13,7 +13,6 @@ homebrew:
     - docker
     - clipy
     - flux
-    - franz
     - google-chrome
     - google-backup-and-sync
     - google-japanese-ime
@@ -26,8 +25,9 @@ homebrew:
     - kindle
     - macs-fan-control
     - mathpix-snipping-tool
-    - mendeley
+    - mysqlworkbench
     - postman
+    - station
     - ShowyEdge
     - xquartz
     - vagrant
@@ -52,7 +52,6 @@ homebrew:
     - nkf
     - pandoc
     - peco
-    - pipenv
     - r
     - rename
     - rmtrash
