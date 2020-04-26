@@ -5,6 +5,7 @@ anyenv:
 
 homebrew:
   applications:
+    - adoptopenjdk8
     - alfred
     - amazon-music
     - android-studio
@@ -18,7 +19,6 @@ homebrew:
     - google-japanese-ime
     - hyperswitch
     - iterm2
-    - adoptopenjdk/openjdk/adoptopenjdk8
     - jetbrains-toolbox
     - kap
     - karabiner-elements
