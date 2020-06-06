@@ -10,8 +10,8 @@ set fish_greeting ""
 set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin
 
 
-alias g++="g++-8"
-alias gcc="gcc-8"
+alias g++="g++-9"
+alias gcc="gcc-9"
 
 alias v="vim"
 alias ls="ls -a -G"
