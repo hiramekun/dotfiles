@@ -30,7 +30,7 @@ DerivedData/
 .idea
 *.iml
 venv/
-CMakeLists.txt
+.venv
 cmake-build-debug/
 *__pycache__*
 *.dSYM/
