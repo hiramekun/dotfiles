@@ -10,8 +10,8 @@ set fish_greeting ""
 set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin $HOME/flutter/bin $HOME/.pub-cache/bin $HOME/.poetry/bin
 
 
-alias g++="g++-8"
-alias gcc="gcc-8"
+alias g++="g++-9"
+alias gcc="gcc-9"
 
 alias v="vim"
 alias ls="ls -a -G"
@@ -28,11 +28,11 @@ alias traja='trans {ja=en} -no-auto'
 alias gbr='git branch'
 alias gbrd='git branch -d'
 alias gbra='git branch -a'
-alias gch='git checkout'
-alias gch-='git checkout -'
-alias gchb='git checkout -b'
-alias gchd='git checkout develop'
-alias gchm='git checkout master'
+alias gch='git switch'
+alias gch-='git switch -'
+alias gchb='git switch -c'
+alias gchd='git switch develop'
+alias gchm='git switch master'
 alias gst='git status'
 alias gsh='git stash'
 alias gshp='git stash -p'

@@ -13,3 +13,6 @@ alias lower='python ~/dotfiles/scripts/lower.py'
 
 alias activate='. ./venv/bin/activate.fish'
 alias ocaml='rlwrap ocaml'
+
+alias dcd='docker-compose -f docker-compose-mac-dev.yml'
+alias cds='cd ~/compass-repo/cel_docker/cel'
