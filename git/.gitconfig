@@ -21,3 +21,5 @@
 [commit]
 [push]
 	default = upstream
+[pull]
+	ff = only
