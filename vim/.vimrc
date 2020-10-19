@@ -21,6 +21,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('kovisoft/slimv')
 call dein#add('davidhalter/jedi-vim')
 call dein#add('iamcco/markdown-preview.vim')
+call dein#add('eigenfoo/stan-vim')
 
 call dein#end()
 
