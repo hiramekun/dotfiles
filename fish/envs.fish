@@ -3,14 +3,12 @@ set -x GOENV_ROOT "$HOME/.anyenv/envs/goenv"
 set -x PATH $PATH "$HOME/.anyenv/envs/goenv/bin"
 set -gx PATH "$HOME/.anyenv/envs/goenv/shims" $PATH
 set -gx GOENV_SHELL fish
-source "$GOENV_ROOT/libexec/../completions/goenv.fish"
 
 #init rbenv
 set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
 set -x PATH $PATH "$RBENV_ROOT/bin"
 set -gx PATH "$RBENV_ROOT/shims" $PATH
 set -gx RBENV_SHELL fish
-source "$RBENV_ROOT/libexec/../completions/rbenv.fish"
 
 #init pyenv
 set -x PYENV_ROOT "$HOME/.anyenv/envs/pyenv"
