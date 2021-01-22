@@ -108,3 +108,4 @@ link:
   tmux/.tmux.conf:            .tmux.conf
   karabiner:                  .config/karabiner
   fish:                       .config/fish
+  nvim:                       .config/nvim
