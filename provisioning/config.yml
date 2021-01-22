@@ -2,7 +2,6 @@ anyenv:
   dir:         '{{ home_path }}/.anyenv'
   plugins_dir: '{{ home_path }}/.anyenv/plugins'
   envs_dir:    '{{ home_path }}/.anyenv/envs'
-
 homebrew:
   applications:
     - adoptopenjdk8
@@ -13,9 +12,9 @@ homebrew:
     - appcleaner
     - bettertouchtool
     - docker
+    - biscuit
     - clipy
     - flux
-    - google-chrome
     - google-backup-and-sync
     - google-japanese-ime
     - hyperswitch
@@ -29,8 +28,8 @@ homebrew:
     - mathpix-snipping-tool
     - mysqlworkbench
     - postman
-    - station
     - ShowyEdge
+    - xmind
     - xquartz
     - vagrant
     - vanilla
@@ -52,15 +51,16 @@ homebrew:
     - mycli
     - mysql@5.7
     - nkf
+    - nvim
     - pandoc
     - peco
     - r
     - rename
-    - rmtrash
     - sbt
     - sox
     - tmux
     - translate-shell
+    - trash
     - tree
     - vim
     - wget

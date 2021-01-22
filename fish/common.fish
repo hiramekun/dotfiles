@@ -13,10 +13,11 @@ set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv
 alias g++="g++-9"
 alias gcc="gcc-9"
 
+alias vim="nvim"
 alias v="vim"
 alias ls="ls -a -G"
 alias lsg="ls | grep"
-alias rm='rmtrash'
+alias rm='trash'
 alias emacs="emacs -nw"
 
 alias tobom='nkf --overwrite --oc=UTF-8-BOM'
