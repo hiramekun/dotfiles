@@ -20,10 +20,10 @@ set -gx PYENV_SHELL fish
 source "$PYENV_ROOT/libexec/../completions/pyenv.fish"
 
 #init ndenv
-set -x NDENV_ROOT "$HOME/.anyenv/envs/ndenv"
-set -x PATH $PATH "$NDENV_ROOT/bin"
-set -gx PATH "$NDENV_ROOT/shims" $PATH
-set -gx NDENV_SHELL fish
+set -x NODENV_ROOT "$HOME/.anyenv/envs/nodenv"
+set -x PATH $PATH "$NODENV_ROOT/bin"
+set -gx PATH "$NODENV_ROOT/shims" $PATH
+set -gx NODENV_SHELL fish
 
 #init jenv
 set -x JENV_ROOT "$HOME/.anyenv/envs/jenv"

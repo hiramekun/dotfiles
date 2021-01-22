@@ -75,7 +75,7 @@ ruby:
 
 nodejs:
   versions:
-    - "v8.11.3"
+    - "12.13.0"
 
 golang:
   versions:
