@@ -6,6 +6,7 @@ anyenv:
 homebrew:
   applications:
     - adoptopenjdk8
+    - adoptopenjdk14
     - alfred
     - amazon-music
     - android-studio
@@ -91,6 +92,7 @@ python:
 java:
   versions:
     - '1.8'
+    - '14'
 
 link:
   bash/.bash_profile:         .bash_profile
