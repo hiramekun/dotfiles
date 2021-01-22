@@ -1,10 +1,11 @@
 Inspired by this repository.   
 [creasty/dotfiles](https://github.com/creasty/dotfiles)
 
+**For MaxOS only**.  
 First, get Xcode build tools.  
  Then follow below.
  ```
- $ git pull https://github.com/hiramekun/dotfiles.git
+ $ git clone https://github.com/hiramekun/dotfiles.git
  $ cd dotfiles
  $ sh up
  ``` 
