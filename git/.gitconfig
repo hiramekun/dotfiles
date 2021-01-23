@@ -10,7 +10,7 @@
 [diff]
 	compactionHeuristic = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
