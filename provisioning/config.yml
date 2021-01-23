@@ -11,9 +11,9 @@ homebrew:
     - android-studio
     - appcleaner
     - bettertouchtool
-    - docker
     - biscuit
     - clipy
+    - docker
     - flux
     - google-backup-and-sync
     - google-japanese-ime
@@ -28,6 +28,7 @@ homebrew:
     - mathpix-snipping-tool
     - mysqlworkbench
     - postman
+    - rstudio
     - ShowyEdge
     - xmind
     - xquartz
