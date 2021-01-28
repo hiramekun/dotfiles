@@ -11,7 +11,7 @@ First, get Xcode build tools.
  ``` 
  
   - fish shell
-  - vim
+  - vim, nvim
   - karabiner settings
   - tmux
   - anyenv
