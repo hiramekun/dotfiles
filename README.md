@@ -17,6 +17,6 @@ First, get Xcode build tools.
   - anyenv
     - rbenv
     - pyenv
-    - ndenv
+    - nodenv
     - jenv
   - install apps and packages by homebrew
