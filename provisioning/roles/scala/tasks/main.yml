@@ -1,0 +1,31 @@
+- set_fact:
+    scala: {}
+
+- name: check scalaenv
+  command: |
+    bash -lc 'which scalaenv'
+  register: which_scalaenv
+  ignore_errors: yes
+
+- name: install scalaenv
+  command: |
+    bash -lc 'anyenv install scalaenv'
+  when: which_scalaenv.rc > 0
+
+- name: get installed versions
+  command: |
+    bash -lc 'scalaenv versions'
+  register: installed_versions
+  ignore_errors: yes
+
+- name: install scala
+  command: |
+    bash -lc 'scalaenv install {{ item | quote }}'
+  when: |
+    scala.versions and installed_versions.stdout.find(item) == -1
+  with_items: '{{ scala.versions }}'
+
+- name: set global scala
+  command: |
+    bash -lc 'scalaenv global {{ scala.versions[0] | quote }}'
+  when: scala.versions
