@@ -3,4 +3,5 @@ __pycache__
 *.pyc
 vim/dein/*
 fishd*
+fish/fish_variables
 provisioning/playbook.retry
