@@ -34,3 +34,10 @@ set -x JENV_LOADED 1
 set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
 set -gx PATH "$SWIFTENV_ROOT/bin" $PATH
 if which swiftenv > /dev/null; status --is-interactive; and source (swiftenv init -|psub); end
+
+#init scalaenv
+set -x SCALAENV_ROOT "$HOME/.anyenv/envs/scalaenv"
+set -x PATH "$SCALAENV_ROOT/bin" $PATH
+set -gx PATH "$SCALAENV_ROOT/shims" $PATH
+set -gx SCALAENV_SHELL fish
+

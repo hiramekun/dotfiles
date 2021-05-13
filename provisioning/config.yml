@@ -95,6 +95,10 @@ java:
     - '1.8'
     - '14'
 
+scala:
+  versions:
+    - '2.13.4'
+
 link:
   bash/.bash_profile:         .bash_profile
   bash/.bashrc:               .bashrc
