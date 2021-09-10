@@ -30,6 +30,7 @@ homebrew:
     - postman
     - rstudio
     - ShowyEdge
+    - typora
     - xmind
     - xquartz
     - vagrant
