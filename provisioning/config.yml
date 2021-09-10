@@ -35,6 +35,7 @@ homebrew:
     - xquartz
     - vagrant
     - vanilla
+    - virtualbox
     - visual-studio-code
 
   packages:
@@ -50,6 +51,7 @@ homebrew:
     - htop
     - jpeg
     - mecab
+    - minikube
     - mycli
     - mysql@5.7
     - nkf
