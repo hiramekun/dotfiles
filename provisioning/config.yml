@@ -50,6 +50,7 @@ homebrew:
     - git-flow
     - htop
     - jpeg
+    - krew
     - kubectl
     - mecab
     - minikube
