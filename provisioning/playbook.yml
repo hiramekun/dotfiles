@@ -34,7 +34,7 @@
       tags: ['lang', 'python']
     - role: java
       tags: ['lang', 'java']
-      #- role: golang
-      #tags: ['lang', 'golang']
+    - role: golang
+      tags: ['lang', 'golang']
 
 
