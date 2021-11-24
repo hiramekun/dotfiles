@@ -70,6 +70,7 @@ homebrew:
     - trash
     - tree
     - vim
+    - watch
     - wget
 
 ruby:
