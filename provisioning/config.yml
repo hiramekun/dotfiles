@@ -5,7 +5,7 @@ anyenv:
 homebrew:
   applications:
     - adoptopenjdk8
-    - adoptopenjdk14
+    - adoptopenjdk15
     - alfred
     - amazon-music
     - android-studio
