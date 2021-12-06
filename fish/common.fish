@@ -19,6 +19,8 @@ alias ls="ls -a -G"
 alias lsg="ls | grep"
 alias rm='trash'
 alias emacs="emacs -nw"
+alias cp='cp -v'
+alias mv='mv -v'
 
 alias tobom='nkf --overwrite --oc=UTF-8-BOM'
 alias toutf8='nkf --overwrite --oc=UTF-8'
