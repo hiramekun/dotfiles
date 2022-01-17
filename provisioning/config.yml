@@ -30,6 +30,7 @@ homebrew:
     - mysqlworkbench
     - postman
     - rstudio
+    - sequel-ace
     - ShowyEdge
     - typora
     - xmind
