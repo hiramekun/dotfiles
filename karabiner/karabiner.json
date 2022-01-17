@@ -289,26 +289,6 @@
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ],
-                                        "optional": [
-                                            "caps_lock",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "return_or_enter"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
@@ -632,6 +612,32 @@
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 825,
+                        "vendor_id": 1241
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 34,
+                        "vendor_id": 1278
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
                 }
             ],
             "fn_function_keys": [
@@ -762,16 +768,6 @@
             },
             "selected": true,
             "simple_modifications": [
-                {
-                    "from": {
-                        "key_code": "japanese_pc_katakana"
-                    },
-                    "to": [
-                        {
-                            "key_code": "right_control"
-                        }
-                    ]
-                },
                 {
                     "from": {
                         "key_code": "japanese_pc_nfer"
