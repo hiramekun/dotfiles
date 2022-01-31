@@ -7,7 +7,7 @@ set -gx PAGER "less -R"
 set fish_greeting ""
 
 #path
-set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin $HOME/flutter/bin $HOME/.pub-cache/bin $HOME/.poetry/bin
+set PATH /opt/homebrew/bin/ /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin $HOME/flutter/bin $HOME/.pub-cache/bin $HOME/.poetry/bin
 
 
 alias g++="g++-11"
