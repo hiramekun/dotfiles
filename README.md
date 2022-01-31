@@ -2,7 +2,7 @@
 Inspired by this repository.   
 [creasty/dotfiles](https://github.com/creasty/dotfiles)
 
-**For MaxOS only**.  
+**For MaxOS, Intel only now**.  
 First, get Xcode build tools.  
  Then follow below.
  ```
