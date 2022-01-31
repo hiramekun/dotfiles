@@ -2,12 +2,12 @@ anyenv:
   dir:         '{{ home_path }}/.anyenv'
   plugins_dir: '{{ home_path }}/.anyenv/plugins'
   envs_dir:    '{{ home_path }}/.anyenv/envs'
-homebrew:
+
+homebrew: 
   applications:
     - adoptopenjdk8
     - adoptopenjdk15
     - alfred
-    - amazon-music
     - android-studio
     - appcleaner
     - bettertouchtool
@@ -15,7 +15,6 @@ homebrew:
     - clipy
     - docker
     - flux
-    - google-backup-and-sync
     - google-japanese-ime
     - hyperswitch
     - iterm2
@@ -29,15 +28,14 @@ homebrew:
     - miro
     - mysqlworkbench
     - postman
+    - pushplaylabs-sidekick
     - rstudio
     - sequel-ace
     - ShowyEdge
     - typora
     - xmind
     - xquartz
-    - vagrant
     - vanilla
-    - virtualbox
     - visual-studio-code
 
   packages:
@@ -74,18 +72,9 @@ homebrew:
     - watch
     - wget
 
-ruby:
-  versions:
-    - '2.5.1'
-  plugins_dir: '{{ anyenv.envs_dir }}/rbenv/plugins'
-  plugins:
-    - ianheggie/rbenv-binstubs
-    - sstephenson/rbenv-default-gems
-    - sstephenson/rbenv-gem-rehash
-
 nodejs:
   versions:
-    - "12.13.0"
+    - "16.12.0"
 
 golang:
   versions:
@@ -93,7 +82,7 @@ golang:
 
 python:
   versions:
-    - '3.7.0'
+    - '3.9.2'
 
   packages:
     - vim-vint
