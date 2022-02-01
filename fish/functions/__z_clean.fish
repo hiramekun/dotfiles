@@ -1,11 +1,11 @@
 function __z_clean -d "Clean up .z file to remove paths no longer valid"
-  set -l path (command dirname (status -f))
-  set -l tmpfile (mktemp $Z_DATA.XXXXXX)
+    set -l tmpfile (mktemp $Z_DATA.XXXXXX)
 
-  if test -f $tmpfile
-    command awk -F "|" -f $path/zclean.awk $Z_DATA > $tmpfile
-    command mv -f $tmpfile $Z_DATA
-  end
-
-  __z_complete
+    if test -f $tmpfile
+        while read line
+            set -l path (string split '|' $line)[1]
+            test -d $path; and echo $line
+        end <$Z_DATA >$tmpfile
+        command mv -f $tmpfile $Z_DATA
+    end
 end
