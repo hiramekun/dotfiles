@@ -13,6 +13,7 @@ homebrew:
     - bettertouchtool
     - biscuit
     - clipy
+    - direnv
     - docker
     - flux
     - google-japanese-ime
