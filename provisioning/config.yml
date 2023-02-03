@@ -48,6 +48,7 @@ homebrew:
     - ffmpeg
     - gawk
     - git
+    - git-delta
     - git-flow
     - htop
     - jpeg

@@ -5,10 +5,11 @@ set -gx PKG_CONFIG_PATH "/usr/local/lib_pkgconfig"
 set -gx GOPATH "$HOME/go"
 set -gx PAGER "less -R"
 set fish_greeting ""
+#https://github.com/withfig/fig/issues/1583
+set -gx FIG_WORKFLOWS_KEYBIND "^\\"
 
 #path
-set PATH /opt/homebrew/bin/ /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin $HOME/flutter/bin $HOME/.pub-cache/bin $HOME/.poetry/bin
-
+set PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin /opt/homebrew/bin/ /opt/X11/bin $HOME/.anyenv/bin $GOPATH/bin $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/ndk-bundle $HOME/.local $HOME/.anyenv/envs/rbenv/versions/2.5.1/bin/ /usr/local/opt/mysql@5.7/bin $HOME/flutter/bin $HOME/.pub-cache/bin $HOME/.poetry/bin $HOME/.krew/bin $HOME/Library/Python/3.8/bin $HOME/google-cloud-sdk/bin/ /opt/homebrew/opt/mysql@5.7/bin
 
 alias g++="g++-11"
 alias gcc="gcc-11"
