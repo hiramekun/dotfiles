@@ -13,9 +13,9 @@ homebrew:
     - bettertouchtool
     - biscuit
     - clipy
-    - direnv
     - docker
     - flux
+    - google-chrome
     - google-japanese-ime
     - hyperswitch
     - iterm2
@@ -25,7 +25,6 @@ homebrew:
     - kindle
     - kitematic
     - macs-fan-control
-    - mathpix-snipping-tool
     - miro
     - mysqlworkbench
     - postman
@@ -43,6 +42,7 @@ homebrew:
     - automake
     - carthage
     - cocoapods
+    - direnv
     - docker
     - fish
     - ffmpeg
