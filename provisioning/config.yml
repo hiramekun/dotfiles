@@ -99,6 +99,7 @@ scala:
     - '2.13.4'
 
 link:
+  zsh/.zshrc:                 .zshrc
   bash/.bash_profile:         .bash_profile
   bash/.bashrc:               .bashrc
   bash/local.bash:            local.bash
