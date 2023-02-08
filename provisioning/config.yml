@@ -1,8 +1,3 @@
-anyenv:
-  dir:         '{{ home_path }}/.anyenv'
-  plugins_dir: '{{ home_path }}/.anyenv/plugins'
-  envs_dir:    '{{ home_path }}/.anyenv/envs'
-
 homebrew: 
   applications:
     - adoptopenjdk8
@@ -72,30 +67,6 @@ homebrew:
     - vim
     - watch
     - wget
-
-nodejs:
-  versions:
-    - "16.12.0"
-
-golang:
-  versions:
-    - "1.10.0"
-
-python:
-  versions:
-    - '3.9.2'
-
-  packages:
-    - vim-vint
-
-java:
-  versions:
-    - '1.8'
-    - '14'
-
-scala:
-  versions:
-    - '2.13.4'
 
 link:
   zsh/.zshrc:                 .zshrc
