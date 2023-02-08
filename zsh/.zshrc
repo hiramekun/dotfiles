@@ -1,3 +1,6 @@
+source "$DOTFILES_PATH/zsh/alias.zsh"
+source "$DOTFILES_PATH/zsh/plugin.zsh"
+
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
 bindkey -e
@@ -41,12 +44,8 @@ setopt hist_ignore_space
 # 続けて <Tab> を押すと候補からパス名を選択できるようになる
 # 候補を選ぶには <Tab> か Ctrl-N,B,F,P
 zstyle ':completion:*:default' menu select=1
-chpwd() {
-	if [[ $(pwd) != $HOME ]]; then;
-		ls
-	fi
-}
 
+export LSCOLORS=cxfxcxdxbxegedabagacad
 function do_enter() {
 	zle accept-line
     if [ -z "$BUFFER" ]; then
@@ -63,8 +62,12 @@ zle -N do_enter
 bindkey '^m' do_enter
 bindkey '^j' do_enter
 
-source "$DOTFILES_PATH/zsh/alias.zsh"
-source "$DOTFILES_PATH/zsh/plugin.zsh"
+chpwd() {
+	if [[ $(pwd) != $HOME ]]; then;
+	do_enter
+	fi
+}
+
 
 # -------------------------------------------------
 # pecoの活用1
