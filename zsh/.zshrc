@@ -11,21 +11,6 @@ autoload -U compinit; compinit
 # 例： /usr/bin と入力すると /usr/bin ディレクトリに移動
 setopt auto_cd
 
-# ↑を設定すると、 .. とだけ入力したら1つ上のディレクトリに移動できるので……
-# 2つ上、3つ上にも移動できるようにする
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias ls='ls -a'
-export LSCOLORS=cxfxcxdxbxegedabagacad
-alias ls='ls -aGF'
-alias gch='git checkout'
-alias gchd='git checkout develop'
-alias gad='git add'
-alias gps='git push'
-alias grei='git rebase -i'
-alias gcm='git commit'
-alias gcma='git commit --amend'
-
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
 # 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
 # hash -d hoge=/long/path/to/hogehoge
@@ -77,6 +62,8 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 bindkey '^j' do_enter
+
+source "$DOTFILES_PATH/zsh/alias.zsh"
 
 # -------------------------------------------------
 # pecoの活用1

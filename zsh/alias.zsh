@@ -1,0 +1,15 @@
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ls='ls -a'
+alias ls='ls -aGF'
+
+# git
+alias gch='git checkout'
+alias gchd='git checkout develop'
+alias gad='git add'
+alias gps='git push'
+alias grei='git rebase -i'
+alias gcm='git commit'
+alias gcma='git commit --amend'
+alias gsh='git stash'
+alias gshp='git stash pop'

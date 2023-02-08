@@ -5,3 +5,5 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+export LSCOLORS=cxfxcxdxbxegedabagacad
+export DOTFILES_PATH="$HOME/dotfiles"
