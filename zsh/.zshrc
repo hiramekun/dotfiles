@@ -112,7 +112,7 @@ zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:th
 zplug "peterhurford/git-aliases.zsh"
 # 入力途中に候補をうっすら表示
 zplug "zsh-users/zsh-autosuggestions"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#c6c6c6,bg=cyan,bold,underline"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#c6c6c6,bg=#106a84,bold,underline"
 # コマンドを種類ごとに色付け
 zplug "zsh-users/zsh-syntax-highlighting"
 
