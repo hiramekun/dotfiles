@@ -39,3 +39,6 @@ bindkey '^r' peco-select-history
 # 例： cd /home/me/somewhere<Ctrl-W> → cd /home/me/
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+function copy() {
+  echo $argv | perl -pe 'chomp'| pbcopy
+}
