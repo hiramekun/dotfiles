@@ -1,6 +1,6 @@
+source "$DOTFILES_PATH/zsh/plugin.zsh"
 source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/console.zsh"
-source "$DOTFILES_PATH/zsh/plugin.zsh"
 
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
