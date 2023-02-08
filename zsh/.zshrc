@@ -64,6 +64,7 @@ bindkey '^m' do_enter
 bindkey '^j' do_enter
 
 source "$DOTFILES_PATH/zsh/alias.zsh"
+source "$DOTFILES_PATH/zsh/plugin.zsh"
 
 # -------------------------------------------------
 # pecoの活用1
@@ -82,36 +83,4 @@ bindkey '^r' peco-select-history
 # パス名を入力中にファイル名を一気に消すとき便利
 # 例： cd /home/me/somewhere<Ctrl-W> → cd /home/me/
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-if [[ ! -d ~/.zplug ]];then
-  git clone https://github.com/zplug/zplug ~/.zplug
-fi
-
-source ~/.zplug/init.zsh
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
-
-zplug "zsh-users/zsh-completions"
-zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-
-# git の補完を効かせる
-# 補完＆エイリアスが追加される
-#zplug "plugins/git",   from:oh-my-zsh
-zplug "peterhurford/git-aliases.zsh"
-# 入力途中に候補をうっすら表示
-zplug "zsh-users/zsh-autosuggestions"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#c6c6c6,bg=#106a84,bold,underline"
-# コマンドを種類ごとに色付け
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# インストールしてないプラグインはインストール
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load --verbose
-
 
