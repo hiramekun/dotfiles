@@ -144,6 +144,10 @@ check_xcode_license_approved() {
   echo 'done'
 }
 
+load_env() {
+  source shell/env.sh
+}
+
 install_homebrew() {
   command -v 'brew' > /dev/null 2>&1 && return
 
@@ -178,6 +182,7 @@ main() {
   check_os
   clone_or_update_repo
   check_xcode_license_approved
+  load_env
   install_homebrew
   brew_tap
   install_ansible
