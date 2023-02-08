@@ -112,7 +112,6 @@ if ! zplug check --verbose; then
 fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
-export SPACESHIP_CONFIG="$HOME/.config/spaceship/.spaceship.zsh"
 zplug load --verbose
 
 
