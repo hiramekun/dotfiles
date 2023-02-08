@@ -44,7 +44,6 @@ homebrew:
     - cocoapods
     - direnv
     - docker
-    - fish
     - ffmpeg
     - gawk
     - git
