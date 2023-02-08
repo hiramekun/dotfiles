@@ -27,6 +27,7 @@ alias gcma='git commit --amend'
 
 alias ggr="git log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'"
 alias gp='git remote prune origin'
+alias gpl='git pull'
 alias gps='git push'
 alias grei='git rebase -i'
 alias gsh='git stash'
