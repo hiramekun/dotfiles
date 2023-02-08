@@ -1,6 +1,5 @@
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ls='ls -a'
 alias ls='ls -aGF'
 alias rm='trash'
 alias emacs="emacs -nw"

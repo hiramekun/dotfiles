@@ -18,6 +18,9 @@ setopt auto_cd
 # 隠しファイルも補完で表示する
 setopt globdots
 
+#ターミナルの音をオフにする
+setopt NO_BEEP
+
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
 # 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
 # hash -d hoge=/long/path/to/hogehoge

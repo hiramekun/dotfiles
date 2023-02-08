@@ -1,23 +1,28 @@
-function do_enter() {
-	zle accept-line
-    if [ -z "$BUFFER" ]; then
-		echo
-		ls
-		if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-			echo
-			echo -e "\e[0;33m--- git status ---\e[0m"
-			git status -sb
-		fi
-    fi
+function inner_enter {
+  echo
+  ls
+  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+	echo
+	echo -e "\e[0;33m--- git status ---\e[0m"
+	git status -sb
+  fi
 }
+
+function do_enter() {
+  zle accept-line
+  if [ -z "$BUFFER" ]; then
+    inner_enter
+  fi
+}
+
 zle -N do_enter
 bindkey '^m' do_enter
 bindkey '^j' do_enter
 
 chpwd() {
-	if [[ $(pwd) != $HOME ]]; then;
-	do_enter
-	fi
+  if [[ $(pwd) != $HOME ]]; then;
+    inner_enter
+  fi
 }
 
 
