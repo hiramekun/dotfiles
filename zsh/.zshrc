@@ -45,7 +45,6 @@ setopt hist_ignore_space
 # 候補を選ぶには <Tab> か Ctrl-N,B,F,P
 zstyle ':completion:*:default' menu select=1
 
-export LSCOLORS=cxfxcxdxbxegedabagacad
 function do_enter() {
 	zle accept-line
     if [ -z "$BUFFER" ]; then

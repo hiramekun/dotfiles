@@ -8,3 +8,4 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 export LSCOLORS=cxfxcxdxbxegedabagacad
 export SPACESHIP_CONFIG="$HOME/.config/spaceship/.spaceship.zsh"
 export DOTFILES_PATH="$HOME/dotfiles"
+export LSCOLORS=cxfxcxdxbxegedabagacad
