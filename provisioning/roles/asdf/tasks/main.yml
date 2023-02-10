@@ -1,0 +1,6 @@
+asdf: {}
+  - name: fetch asdf repo
+    git:
+      repo: https://github.com/asdf-vm/asdf.git --branch v0.11.1
+      dest: '{{ asdf.dir }}'
+      when: asdf.dir

@@ -1,6 +1,11 @@
 source "$DOTFILES_PATH/zsh/plugin.zsh"
 source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/console.zsh"
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
 
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
@@ -9,7 +14,7 @@ bindkey -e
 # 自動補完を有効にする
 # コマンドの引数やパス名を途中まで入力して <Tab> を押すといい感じに補完してくれる
 # 例： `cd path/to/<Tab>`, `ls -<Tab>`
-autoload -U compinit; compinit
+#autoload -U compinit; compinit
 
 # 入力したコマンドが存在せず、かつディレクトリ名と一致するなら、ディレクトリに cd する
 # 例： /usr/bin と入力すると /usr/bin ディレクトリに移動

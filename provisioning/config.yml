@@ -1,3 +1,6 @@
+asdf:
+  dir:  '{{ home_path }}/.asdf'}}
+
 homebrew: 
   applications:
     - adoptopenjdk8
