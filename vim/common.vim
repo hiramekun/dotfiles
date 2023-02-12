@@ -84,6 +84,7 @@ nnoremap <Up> <C-w>-
 "format
 set number
 set ruler
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set cursorline
