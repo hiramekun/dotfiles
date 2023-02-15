@@ -35,6 +35,7 @@ homebrew:
     - xquartz
     - vanilla
     - visual-studio-code
+    - zoom
 
   packages:
     - automake
