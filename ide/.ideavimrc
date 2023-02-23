@@ -1,2 +1,4 @@
 set clipboard+=unnamed
+set visualbell
+set noerrorbells
 set belloff=all
