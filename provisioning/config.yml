@@ -91,3 +91,4 @@ link:
   karabiner:                  .config/karabiner
   fish:                       .config/fish
   nvim:                       .config/nvim
+  spaceship:                  .config/spaceship
