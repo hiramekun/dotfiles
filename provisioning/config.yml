@@ -45,6 +45,7 @@ homebrew:
     - docker
     - ffmpeg
     - gawk
+    - gibo
     - git
     - git-delta
     - git-flow
