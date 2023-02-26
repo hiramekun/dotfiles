@@ -40,3 +40,6 @@ a.out
 .ipynb_checkpoints
 
 .java-version
+
+## Zsh
+*.zwc
