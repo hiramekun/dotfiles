@@ -53,6 +53,7 @@ homebrew:
     - jpeg
     - krew
     - kubectl
+    - lazygit
     - mecab
     - minikube
     - mycli
