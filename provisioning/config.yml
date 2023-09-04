@@ -1,5 +1,5 @@
 asdf:
-  dir:  '{{ home_path }}/.asdf'}}
+  dir:  '{{ home_path }}/.asdf}}'
 
 homebrew: 
   applications:
