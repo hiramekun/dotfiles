@@ -2,6 +2,9 @@ source "$DOTFILES_PATH/zsh/plugin.zsh"
 source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/console.zsh"
 . "$HOME/.asdf/asdf.sh"
+
+# setup direnv
+eval "$(direnv hook zsh)"
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
@@ -57,3 +60,9 @@ setopt hist_ignore_space
 # 候補を選ぶには <Tab> か Ctrl-N,B,F,P
 zstyle ':completion:*:default' menu select=1
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/takaaki.hirano/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
