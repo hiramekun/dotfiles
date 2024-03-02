@@ -1,4 +1,7 @@
 ## dotfiles
+![image](https://github.com/hiramekun/dotfiles/assets/20180425/e869714e-6180-46a0-ba8c-3e8106309f78)
+
+
 Inspired by this repository.   
 [creasty/dotfiles](https://github.com/creasty/dotfiles)
 
