@@ -8,13 +8,22 @@ cd "$(dirname $0)"
 RTUN='reattach-to-user-namespace'
 
 CMD=('ansible-playbook')
-ARGS=('')
+if [ -n "${PROVISION_DRY_RUN:-}" ]; then
+  CMD+=(--check)
+fi
+
+ARGS=()
 for a in "$@"; do
-  ARGS=(${ARGS[@]} "$a")
+  ARGS+=("$a")
 done
 
-if [ -n "${TMUX:-}" ] && command -v $RTUN > /dev/null 2>&1; then
-  CMD=($RTUN ${CMD[@]})
+if [ -n "${TMUX:-}" ] && command -v "$RTUN" > /dev/null 2>&1; then
+  CMD=("$RTUN" "${CMD[@]}")
+fi
+
+if ! command -v ansible-playbook > /dev/null 2>&1; then
+  echo 'skip (ansible-playbook not found)'
+  exit 0
 fi
 
 ${CMD[@]} \

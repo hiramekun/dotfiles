@@ -217,11 +217,16 @@ install_ansible() {
 
 run_provisioning() {
   echo 'Provisioning...'
+  local script="$DOTFILES_PATH/provisioning/run.sh"
   if [ -n "$UP_DRY_RUN" ]; then
-    echo 'DRYRUN: skip provisioning'
-    return
+    if [ ! -x "$script" ]; then
+      echo 'skip (provision script not found)'
+    else
+      PROVISION_DRY_RUN=1 "$script" "${ARGS[@]}" || true
+    fi
+  else
+    "$script" "${ARGS[@]}"
   fi
-  $DOTFILES_PATH/provisioning/run.sh ${ARGS[@]}
   echo 'done'
 }
 
