@@ -213,6 +213,9 @@ install_ansible() {
 
   if [ -n "$UP_DRY_RUN" ]; then
     echo 'DRYRUN: skip ansible install'
+    if ! command -v 'ansible-playbook' > /dev/null 2>&1; then
+      echo 'skip (ansible-playbook not found)'
+    fi
     return
   fi
 
