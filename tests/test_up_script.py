@@ -16,7 +16,15 @@ class TestUpScript(unittest.TestCase):
             check=True,
         )
         output = result.stdout
-        self.assertIn('skip (working on a non-master branch)', output)
+        branch = subprocess.check_output(
+            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+            cwd=env['DOTFILES_PATH'],
+            text=True,
+        ).strip()
+        if branch != 'master':
+            self.assertIn('skip (working on a non-master branch)', output)
+        else:
+            self.assertNotIn('skip (working on a non-master branch)', output)
         self.assertIn('skip (xcrun not found)', output)
         self.assertIn('Provisioning...', output)
         self.assertTrue(
