@@ -163,29 +163,10 @@ endfunction
 
 ""}}}
 
-"" unite.vim{{{
-" prefix key
-nnoremap [unite] <Nop>
-nnoremap u <Nop>
-nmap <Space>u [unite]
-
-
-"keymap
-nnoremap  [unite]u :<C-u>VimFiler<CR>
-nnoremap  [unite]i :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
-nnoremap  [unite]g :<C-u>Unite<Space>grep<CR>
-nnoremap  [unite]f :<C-u>Unite<Space>buffer<CR>
-nnoremap  [unite]b :<C-u>Unite<Space>bookmark<CR>
-nnoremap  [unite]a :<C-u>UniteBookmarkAdd<CR>
-nnoremap  [unite]m :<C-u>Unite<Space>file_mru<CR>
-nnoremap  [unite]h :<C-u>Unite<Space>history/yank<CR>
-nnoremap  [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap  [unite]c :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"vimfiler
-"call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
-let g:vimfiler_as_default_explorer = 1
-
-""}}}
+" telescope keybindings
+nnoremap <Space>ff :Telescope find_files<CR>
+nnoremap <Space>fg :Telescope live_grep<CR>
+nnoremap <Space>fb :Telescope buffers<CR>
 
 " autosave
 let g:auto_save = 1
