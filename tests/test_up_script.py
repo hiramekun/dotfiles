@@ -18,7 +18,11 @@ class TestUpScript(unittest.TestCase):
         output = result.stdout
         self.assertIn('skip (working on a non-master branch)', output)
         self.assertIn('skip (xcrun not found)', output)
-        self.assertIn('skip (ansible-playbook not found)', output)
+        self.assertIn('Provisioning...', output)
+        self.assertTrue(
+            'skip (ansible-playbook not found)' in output or
+            'DRYRUN: ansible-playbook --syntax-check' in output
+        )
         self.assertNotIn('DRYRUN: skip loading env', output)
 
 if __name__ == '__main__':

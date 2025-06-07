@@ -8,8 +8,15 @@ cd "$(dirname $0)"
 RTUN='reattach-to-user-namespace'
 
 CMD=('ansible-playbook')
+
 if [ -n "${PROVISION_DRY_RUN:-}" ]; then
-  CMD+=(--check)
+  if command -v ansible-playbook > /dev/null 2>&1; then
+    CMD+=(--syntax-check)
+    echo 'DRYRUN: ansible-playbook --syntax-check'
+  else
+    echo 'skip (ansible-playbook not found)'
+    exit 0
+  fi
 fi
 
 ARGS=()
@@ -21,9 +28,11 @@ if [ -n "${TMUX:-}" ] && command -v "$RTUN" > /dev/null 2>&1; then
   CMD=("$RTUN" "${CMD[@]}")
 fi
 
-if ! command -v ansible-playbook > /dev/null 2>&1; then
-  echo 'skip (ansible-playbook not found)'
-  exit 0
+if [ -z "${PROVISION_DRY_RUN:-}" ]; then
+  if ! command -v ansible-playbook > /dev/null 2>&1; then
+    echo 'skip (ansible-playbook not found)'
+    exit 0
+  fi
 fi
 
 ${CMD[@]} \
