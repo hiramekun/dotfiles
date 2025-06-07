@@ -5,10 +5,20 @@ set -o pipefail
 
 : ${DOTFILES_PATH:="$HOME/dotfiles"}
 : ${DOTFILES_BRANCH:=master}
+: ${UP_DRY_RUN:=}
 
 ARGS=('')
 for a in "$@"; do ARGS=(${ARGS[@]} "$a")
 done
+
+# Execute command or echo when in dry run mode
+run() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo "DRYRUN: $*"
+  else
+    "$@"
+  fi
+}
 
 
 #=== Utils #==============================================================================================
@@ -64,14 +74,19 @@ print_header() {
 }
 
 check_os() {
-  if [ "$(uname -s)" == "Darwin" ]; then
-    if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") == '<' ]; then
+  local os="$(uname -s)"
+  if [ "$os" = "Darwin" ]; then
+    if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") = '<' ]; then
       echo "Sorry, this script is intended only for OS X 10.9.0+"
-      exit 1
+      if [ -z "$UP_DRY_RUN" ]; then
+        exit 1
+      fi
     fi
   else
     echo "Sorry, this script is intended only for OS X"
-    exit 1
+    if [ -z "$UP_DRY_RUN" ]; then
+      exit 1
+    fi
   fi
 }
 
@@ -96,18 +111,36 @@ clone_or_update_repo() {
       return
     fi
 
-    git --git-dir="$git_dir" pull origin master
-    git --git-dir="$git_dir" submodule sync
+    if [ -n "$UP_DRY_RUN" ]; then
+      echo 'DRYRUN: skip pulling repository'
+    else
+      git --git-dir="$git_dir" pull origin master
+      git --git-dir="$git_dir" submodule sync
+    fi
     echo 'done'
   elif ! [ -d "$DOTFILES_PATH" ]; then
     echo 'Cloning repo...'
-    git clone --recursive git://github.com/creasty/dotfiles.git --branch $DOTFILES_BRANCH $DOTFILES_PATH
+    if [ -n "$UP_DRY_RUN" ]; then
+      echo 'DRYRUN: skip cloning repository'
+    else
+      git clone --recursive git://github.com/creasty/dotfiles.git --branch $DOTFILES_BRANCH $DOTFILES_PATH
+    fi
     echo 'done'
   fi
 }
 
 check_xcode_license_approved() {
   echo 'Agreeing to Xcode license...'
+
+  if ! command -v xcrun > /dev/null 2>&1; then
+    echo 'skip (xcrun not found)'
+    return
+  fi
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip xcode license check'
+    return
+  fi
 
   local has_error=0
 
@@ -145,11 +178,22 @@ check_xcode_license_approved() {
 }
 
 load_env() {
+  set +e
   source shell/env.sh
+  local status=$?
+  set -e
+  if [ $status -ne 0 ]; then
+    echo 'skip (failed to load env)'
+  fi
 }
 
 install_homebrew() {
   command -v 'brew' > /dev/null 2>&1 && return
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip homebrew install'
+    return
+  fi
 
   echo 'Installing homebrew...'
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -157,11 +201,23 @@ install_homebrew() {
 }
 
 brew_tap() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip brew tap'
+    return
+  fi
   brew tap AdoptOpenJDK/openjdk
 }
 
 install_ansible() {
   command -v 'ansible' > /dev/null 2>&1 && return
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip ansible install'
+    if ! command -v 'ansible-playbook' > /dev/null 2>&1; then
+      echo 'skip (ansible-playbook not found)'
+    fi
+    return
+  fi
 
   echo 'Installing ansible...'
   brew install ansible
@@ -170,7 +226,16 @@ install_ansible() {
 
 run_provisioning() {
   echo 'Provisioning...'
-  $DOTFILES_PATH/provisioning/run.sh ${ARGS[@]}
+  local script="$DOTFILES_PATH/provisioning/run.sh"
+  if [ -n "$UP_DRY_RUN" ]; then
+    if [ ! -x "$script" ]; then
+      echo 'skip (provision script not found)'
+    else
+      PROVISION_DRY_RUN=1 "$script" "${ARGS[@]}" || true
+    fi
+  else
+    "$script" "${ARGS[@]}"
+  fi
   echo 'done'
 }
 
