@@ -5,10 +5,20 @@ set -o pipefail
 
 : ${DOTFILES_PATH:="$HOME/dotfiles"}
 : ${DOTFILES_BRANCH:=master}
+: ${UP_DRY_RUN:=}
 
 ARGS=('')
 for a in "$@"; do ARGS=(${ARGS[@]} "$a")
 done
+
+# Execute command or echo when in dry run mode
+run() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo "DRYRUN: $*"
+  else
+    "$@"
+  fi
+}
 
 
 #=== Utils #==============================================================================================
@@ -64,6 +74,10 @@ print_header() {
 }
 
 check_os() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip os check'
+    return
+  fi
   if [ "$(uname -s)" == "Darwin" ]; then
     if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") == '<' ]; then
       echo "Sorry, this script is intended only for OS X 10.9.0+"
@@ -77,6 +91,11 @@ check_os() {
 
 clone_or_update_repo() {
   local git_dir="$DOTFILES_PATH/.git"
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip repo setup'
+    return
+  fi
 
   if [ -d "$git_dir" ]; then
     echo 'Updating repo...'
@@ -108,6 +127,11 @@ clone_or_update_repo() {
 
 check_xcode_license_approved() {
   echo 'Agreeing to Xcode license...'
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip xcode license check'
+    return
+  fi
 
   local has_error=0
 
@@ -145,11 +169,20 @@ check_xcode_license_approved() {
 }
 
 load_env() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip loading env'
+    return
+  fi
   source shell/env.sh
 }
 
 install_homebrew() {
   command -v 'brew' > /dev/null 2>&1 && return
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip homebrew install'
+    return
+  fi
 
   echo 'Installing homebrew...'
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -157,11 +190,20 @@ install_homebrew() {
 }
 
 brew_tap() {
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip brew tap'
+    return
+  fi
   brew tap AdoptOpenJDK/openjdk
 }
 
 install_ansible() {
   command -v 'ansible' > /dev/null 2>&1 && return
+
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip ansible install'
+    return
+  fi
 
   echo 'Installing ansible...'
   brew install ansible
@@ -170,6 +212,10 @@ install_ansible() {
 
 run_provisioning() {
   echo 'Provisioning...'
+  if [ -n "$UP_DRY_RUN" ]; then
+    echo 'DRYRUN: skip provisioning'
+    return
+  fi
   $DOTFILES_PATH/provisioning/run.sh ${ARGS[@]}
   echo 'done'
 }
