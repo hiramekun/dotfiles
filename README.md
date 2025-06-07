@@ -16,9 +16,28 @@ Then follow below.
  ``` 
  
   - zsh
-  - vim, nvim
+ - vim, nvim (with nvim-cmp, LSP, and Telescope)
   - karabiner settings
   - tmux
   - install apps and packages by homebrew
 
 TODO: use asdf
+
+## Neovim plugins
+
+Plugins are managed with [dein.vim](https://github.com/Shougo/dein.vim). After cloning the repository, start Neovim and run:
+
+```vim
+:call dein#install()
+```
+
+This installs the plugins declared in `nvim/init.vim` under `~/dotfiles/vim/dein`.
+
+### Plugin usage
+
+- **nvim-lspconfig** provides LSP servers. Opening a supported file automatically starts the language server (Python uses `pyright`).
+- **nvim-cmp** offers completion integrated with LSP. Use `<CR>` to confirm suggestions.
+- **telescope.nvim** is a fuzzy finder. Key mappings are set in `vim/common.vim`:
+  - `<Space>ff` find files
+  - `<Space>fg` live grep
+  - `<Space>fb` list buffers
