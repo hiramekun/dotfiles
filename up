@@ -74,28 +74,24 @@ print_header() {
 }
 
 check_os() {
-  if [ -n "$UP_DRY_RUN" ]; then
-    echo 'DRYRUN: skip os check'
-    return
-  fi
-  if [ "$(uname -s)" == "Darwin" ]; then
-    if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") == '<' ]; then
+  local os="$(uname -s)"
+  if [ "$os" = "Darwin" ]; then
+    if [ $(compare_versions "$(sw_vers -productVersion)" "10.9") = '<' ]; then
       echo "Sorry, this script is intended only for OS X 10.9.0+"
-      exit 1
+      if [ -z "$UP_DRY_RUN" ]; then
+        exit 1
+      fi
     fi
   else
     echo "Sorry, this script is intended only for OS X"
-    exit 1
+    if [ -z "$UP_DRY_RUN" ]; then
+      exit 1
+    fi
   fi
 }
 
 clone_or_update_repo() {
   local git_dir="$DOTFILES_PATH/.git"
-
-  if [ -n "$UP_DRY_RUN" ]; then
-    echo 'DRYRUN: skip repo setup'
-    return
-  fi
 
   if [ -d "$git_dir" ]; then
     echo 'Updating repo...'
@@ -115,18 +111,31 @@ clone_or_update_repo() {
       return
     fi
 
-    git --git-dir="$git_dir" pull origin master
-    git --git-dir="$git_dir" submodule sync
+    if [ -n "$UP_DRY_RUN" ]; then
+      echo 'DRYRUN: skip pulling repository'
+    else
+      git --git-dir="$git_dir" pull origin master
+      git --git-dir="$git_dir" submodule sync
+    fi
     echo 'done'
   elif ! [ -d "$DOTFILES_PATH" ]; then
     echo 'Cloning repo...'
-    git clone --recursive git://github.com/creasty/dotfiles.git --branch $DOTFILES_BRANCH $DOTFILES_PATH
+    if [ -n "$UP_DRY_RUN" ]; then
+      echo 'DRYRUN: skip cloning repository'
+    else
+      git clone --recursive git://github.com/creasty/dotfiles.git --branch $DOTFILES_BRANCH $DOTFILES_PATH
+    fi
     echo 'done'
   fi
 }
 
 check_xcode_license_approved() {
   echo 'Agreeing to Xcode license...'
+
+  if ! command -v xcrun > /dev/null 2>&1; then
+    echo 'skip (xcrun not found)'
+    return
+  fi
 
   if [ -n "$UP_DRY_RUN" ]; then
     echo 'DRYRUN: skip xcode license check'
@@ -169,10 +178,6 @@ check_xcode_license_approved() {
 }
 
 load_env() {
-  if [ -n "$UP_DRY_RUN" ]; then
-    echo 'DRYRUN: skip loading env'
-    return
-  fi
   source shell/env.sh
 }
 
