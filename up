@@ -178,7 +178,13 @@ check_xcode_license_approved() {
 }
 
 load_env() {
+  set +e
   source shell/env.sh
+  local status=$?
+  set -e
+  if [ $status -ne 0 ]; then
+    echo 'skip (failed to load env)'
+  fi
 }
 
 install_homebrew() {
