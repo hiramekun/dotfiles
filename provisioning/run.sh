@@ -9,14 +9,14 @@ RTUN='reattach-to-user-namespace'
 
 CMD=('ansible-playbook')
 
-if [ -n "${PROVISION_DRY_RUN:-}" ]; then
-  if command -v ansible-playbook > /dev/null 2>&1; then
+if command -v ansible-playbook > /dev/null 2>&1; then
+  if [ -n "${PROVISION_DRY_RUN:-}" ]; then
     CMD+=(--syntax-check)
     echo 'DRYRUN: ansible-playbook --syntax-check'
-  else
-    echo 'skip (ansible-playbook not found)'
-    exit 0
   fi
+else
+  echo 'skip (ansible-playbook not found)'
+  exit 0
 fi
 
 ARGS=()
