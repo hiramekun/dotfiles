@@ -5,7 +5,7 @@
 Inspired by this repository.   
 [creasty/dotfiles](https://github.com/creasty/dotfiles)
 
-**For MaxOS, Apple Silicon only**.  
+**For macOS, Apple Silicon only**.
 First, get Xcode build tools.  
 Then follow below.
 

@@ -44,7 +44,7 @@ augroup texfile
 augroup END
 
 let g:slimv_lisp = 'ros run'
-let g:silmv_impl = 'sbcl'
+let g:slimv_impl = 'sbcl'
 nnoremap <silent> ,cl :VimShellInteractive ros -s swank -e '(swank:create-server :port 4005 :dont-close t)' wait<CR>
 
 "jedi-vim
