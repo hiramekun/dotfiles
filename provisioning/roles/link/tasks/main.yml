@@ -31,10 +31,11 @@
 
 - name: create symlinks
   file:
-    src:   '{{ dotfiles_path }}/{{ item.key }}'
-    dest:  '{{ home_path }}/{{ item.value }}'
-    state: link
-    force: yes
+    src:    '{{ dotfiles_path }}/{{ item.key }}'
+    dest:   '{{ home_path }}/{{ item.value }}'
+    state:  link
+    force:  yes
+    follow: false
   loop_control:
     label: '{{ item.value }}'
   with_dict: '{{ link }}'

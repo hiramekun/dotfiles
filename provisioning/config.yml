@@ -16,8 +16,6 @@ asdf:
 
 homebrew: 
   applications:
-    - adoptopenjdk8
-    - adoptopenjdk15
     - alfred
     - android-studio
     - appcleaner
@@ -33,7 +31,6 @@ homebrew:
     - jetbrains-toolbox
     - kap
     - karabiner-elements
-    - kindle
     - kitematic
     - macs-fan-control
     - miro
