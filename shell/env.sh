@@ -16,9 +16,9 @@ fi
 # direnv (works well with asdf)
 if command -v direnv >/dev/null 2>&1; then
   # Detect current shell and use appropriate hook
-  if [ -n "$ZSH_VERSION" ]; then
+  if [ -n "${ZSH_VERSION:-}" ]; then
     eval "$(direnv hook zsh)"
-  elif [ -n "$BASH_VERSION" ]; then
+  elif [ -n "${BASH_VERSION:-}" ]; then
     eval "$(direnv hook bash)"
   fi
 fi
