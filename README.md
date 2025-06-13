@@ -17,5 +17,4 @@ Then follow below.
   - karabiner settings
   - tmux
   - install apps and packages by homebrew
-
-TODO: use asdf
+  - asdf for version management (Node.js, Python, Ruby, etc.)
