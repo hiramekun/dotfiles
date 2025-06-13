@@ -1,5 +1,18 @@
 asdf:
-  dir:  '{{ home_path }}/.asdf}}'
+  dir: '{{ home_path }}/.asdf'
+  plugins:
+    - nodejs
+    - python
+    - ruby
+    - java
+    - golang
+  versions:
+    - name: nodejs
+      version: latest
+    - name: python
+      version: latest
+    - name: ruby
+      version: latest
 
 homebrew: 
   applications:

@@ -1,5 +1,21 @@
 - name: fetch asdf repo
   git:
-    repo: https://github.com/asdf-vm/asdf.git --branch v0.11.1
+    repo: https://github.com/asdf-vm/asdf.git
+    version: v0.14.1
     dest: '{{ asdf.dir }}'
-  when: asdf.dir
+  when: asdf.dir is defined
+
+- name: install asdf plugins
+  shell: |
+    source {{ asdf.dir }}/asdf.sh
+    asdf plugin add {{ item }} || true
+  loop: '{{ asdf.plugins }}'
+  when: asdf.plugins is defined
+
+- name: install asdf versions
+  shell: |
+    source {{ asdf.dir }}/asdf.sh
+    asdf install {{ item.name }} {{ item.version }}
+    asdf global {{ item.name }} {{ item.version }}
+  loop: '{{ asdf.versions }}'
+  when: asdf.versions is defined

@@ -1,10 +1,10 @@
 source ~/common.bash
 source ~/local.bash
 
-export ANYENV_DIR=$HOME/.anyenv
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=$ANYENV_DIR/bin:$PATH
+# Load dotfiles environment (includes asdf and homebrew setup)
+# Ensure DOTFILES_PATH is defined, defaulting to $HOME/dotfiles
+DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
-if [ -d $HOME/.anyenv ] && command 'anyenv' > /dev/null 2>&1; then
-  eval "$(anyenv install --init)"
+if [ -f "$DOTFILES_PATH/shell/env.sh" ]; then
+  source "$DOTFILES_PATH/shell/env.sh"
 fi
