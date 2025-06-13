@@ -1,12 +1,12 @@
 source "$DOTFILES_PATH/zsh/plugin.zsh"
 source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/console.zsh"
-. "$HOME/.asdf/asdf.sh"
 
-# setup direnv
-eval "$(direnv hook zsh)"
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+# asdf completions (ASDF_DIR is set in shell/env.sh)
+if [ -n "${ASDF_DIR:-}" ]; then
+  fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
