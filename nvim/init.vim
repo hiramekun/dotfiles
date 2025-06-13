@@ -12,16 +12,18 @@ if dein#load_state('~/dotfiles/vim/dein')
 	call dein#begin('~/dotfiles/vim/dein')
 	call dein#add('~/dotfiles/vim/dein/repos/github.com/Shougo/dein.vim')
 
-	call dein#add('udalov/kotlin-vim')
-	call dein#add('Shougo/deoplete.nvim')
-	if !has('nvim') 
-		call dein#add('roxma/nvim-yarp')
-		call dein#add('roxma/vim-hug-neovim-rpc')
-	endif
-
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('davidhalter/jedi-vim')
+        call dein#add('udalov/kotlin-vim')
+        " modern completion and LSP support
+        call dein#add('neovim/nvim-lspconfig')
+        call dein#add('hrsh7th/nvim-cmp')
+        call dein#add('hrsh7th/cmp-nvim-lsp')
+        call dein#add('hrsh7th/cmp-buffer')
+        call dein#add('hrsh7th/cmp-path')
+        call dein#add('L3MON4D3/LuaSnip')
+        call dein#add('saadparwaiz1/cmp_luasnip')
+        " telescope for fuzzy finding
+        call dein#add('nvim-lua/plenary.nvim')
+        call dein#add('nvim-telescope/telescope.nvim')
 	call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
 					\ 'build': 'sh -c "cd app && yarn install"' })
 	call dein#add('eigenfoo/stan-vim')
@@ -44,15 +46,29 @@ augroup texfile
 augroup END
 
 let g:slimv_lisp = 'ros run'
-let g:silmv_impl = 'sbcl'
+let g:slimv_impl = 'sbcl'
 nnoremap <silent> ,cl :VimShellInteractive ros -s swank -e '(swank:create-server :port 4005 :dont-close t)' wait<CR>
 
-"jedi-vim
-autocmd FileType python setlocal completeopt-=preview
+lua << EOF
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup{}
 
-"deoplete
-let g:deoplete#enable_at_startup = 1
+local cmp = require('cmp')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'luasnip' },
+  })
+})
+EOF
 
-imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-smap <C-l>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-l>     <Plug>(neosnippet_expand_target)
