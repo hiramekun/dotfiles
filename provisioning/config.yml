@@ -88,6 +88,9 @@ homebrew:
     - gopls                      # Go LSP (will be installed via go install)
     - shellcheck                 # Shell script linter
     - shfmt                      # Shell script formatter
+    - rust-analyzer              # Rust LSP
+    - stylua                     # Lua formatter
+    - terraform-ls               # Terraform LSP
 
   npm_packages:
     - pyright                    # Python LSP
@@ -97,12 +100,18 @@ homebrew:
     - bash-language-server       # Bash LSP
     - prettier                   # Multi-language formatter
     - eslint                     # JavaScript/TypeScript linter
-    - typescript                 # TypeScript compiler
+    - "@fsouza/prettierd"       # Faster prettier daemon
 
   python_packages:
     - black                      # Python formatter
     - flake8                     # Python linter
-    - mypy                       # Python type checker
+    - isort                      # Python import sorter
+
+  go_packages:
+    - github.com/golangci/golangci-lint/cmd/golangci-lint@latest  # Go linter
+    - golang.org/x/tools/cmd/goimports@latest                    # Go import formatter
+    - mvdan.cc/gofumpt@latest                                    # Stricter Go formatter
+    - github.com/go-delve/delve/cmd/dlv@latest                   # Go debugger
 
 link:
   zsh/.zshrc:                 .zshrc
