@@ -3,3 +3,16 @@
     repo:   https://github.com/Shougo/dein.vim
     dest:   '{{ dotfiles_path }}/vim/dein/repos/github.com/Shougo/dein.vim'
     update: False
+
+- name: install dein plugins
+  shell: nvim --headless -c "call dein#install()" -c "qall"
+  args:
+    creates: '{{ dotfiles_path }}/vim/dein/repos/github.com/neovim/nvim-lspconfig'
+  ignore_errors: yes
+
+- name: build markdown-preview plugin
+  shell: npm install
+  args:
+    chdir: '{{ dotfiles_path }}/vim/dein/repos/github.com/iamcco/markdown-preview.nvim/app'
+    creates: '{{ dotfiles_path }}/vim/dein/repos/github.com/iamcco/markdown-preview.nvim/app/node_modules'
+  ignore_errors: yes
