@@ -56,6 +56,7 @@ if dein#load_state('~/dotfiles/vim/dein')
         call dein#add('leoluz/nvim-dap-go')
         call dein#add('rcarriga/nvim-dap-ui')
         call dein#add('theHamsta/nvim-dap-virtual-text')
+        call dein#add('nvim-neotest/nvim-nio')
         
         " Testing
         call dein#add('nvim-neotest/neotest')
