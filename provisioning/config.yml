@@ -77,6 +77,7 @@ homebrew:
     - peco
     - r
     - rename
+    - ripgrep
     - sbt
     - sox
     - tmux
@@ -86,6 +87,25 @@ homebrew:
     - vim
     - watch
     - wget
+    - lua-language-server        # Lua LSP
+    - gopls                      # Go LSP (will be installed via go install)
+    - shellcheck                 # Shell script linter
+    - shfmt                      # Shell script formatter
+
+  npm_packages:
+    - pyright                    # Python LSP
+    - typescript-language-server # TypeScript/JavaScript LSP
+    - vscode-langservers-extracted # HTML, CSS, JSON, ESLint LSP
+    - yaml-language-server       # YAML LSP
+    - bash-language-server       # Bash LSP
+    - prettier                   # Multi-language formatter
+    - eslint                     # JavaScript/TypeScript linter
+    - typescript                 # TypeScript compiler
+
+  python_packages:
+    - black                      # Python formatter
+    - flake8                     # Python linter
+    - mypy                       # Python type checker
 
 link:
   zsh/.zshrc:                 .zshrc

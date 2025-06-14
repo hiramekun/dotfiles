@@ -20,3 +20,17 @@
     install_options: '{{ item.install_options | default("") }}'
   with_items: '{{ homebrew.packages }}'
   when: homebrew.packages
+
+- name: install npm packages globally
+  npm:
+    name: '{{ item }}'
+    global: yes
+  with_items: '{{ homebrew.npm_packages }}'
+  when: homebrew.npm_packages
+
+- name: install Python packages globally
+  pip:
+    name: '{{ item }}'
+    executable: pip3
+  with_items: '{{ homebrew.python_packages }}'
+  when: homebrew.python_packages
