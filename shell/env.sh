@@ -13,6 +13,23 @@ if [ -f "$ASDF_DIR/asdf.sh" ]; then
   source "$ASDF_DIR/asdf.sh"
 fi
 
+# Add Go and Python tools to PATH for Neovim LSP
+if [ -d "$HOME/.asdf/installs/golang" ]; then
+  # Find the latest Go version and add its bin to PATH
+  GO_VERSION=$(ls "$HOME/.asdf/installs/golang" | sort -V | tail -1)
+  if [ -n "$GO_VERSION" ] && [ -d "$HOME/.asdf/installs/golang/$GO_VERSION/packages/bin" ]; then
+    export PATH="$HOME/.asdf/installs/golang/$GO_VERSION/packages/bin:$PATH"
+  fi
+fi
+
+if [ -d "$HOME/.asdf/installs/python" ]; then
+  # Find the latest Python version and add its bin to PATH
+  PYTHON_VERSION=$(ls "$HOME/.asdf/installs/python" | sort -V | tail -1)
+  if [ -n "$PYTHON_VERSION" ] && [ -d "$HOME/.asdf/installs/python/$PYTHON_VERSION/bin" ]; then
+    export PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
+  fi
+fi
+
 # direnv (works well with asdf)
 if command -v direnv >/dev/null 2>&1; then
   # Detect current shell and use appropriate hook
