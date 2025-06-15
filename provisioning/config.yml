@@ -22,6 +22,7 @@ homebrew:
     - bettertouchtool
     - biscuit
     - clipy
+    - cursor
     - docker
     - flux
     - google-chrome
@@ -35,6 +36,7 @@ homebrew:
     - macs-fan-control
     - miro
     - mysqlworkbench
+    - obsidian
     - postman
     - pushplaylabs-sidekick
     - rstudio
