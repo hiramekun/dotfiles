@@ -1,6 +1,18 @@
 - set_fact:
     homebrew: {}
 
+- name: remove problematic legacy casks
+  shell: |
+    brew uninstall --cask adoptopenjdk8 adoptopenjdk15 2>/dev/null || true
+    brew untap adoptopenjdk/openjdk 2>/dev/null || true
+  ignore_errors: yes
+
+- name: clean homebrew cache and problematic files
+  shell: |
+    brew cleanup 2>/dev/null || true
+    rm -rf "$(brew --cache)" 2>/dev/null || true
+  ignore_errors: yes
+
 - name: update homebrew
   homebrew:
     update_homebrew: yes
