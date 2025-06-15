@@ -108,6 +108,7 @@ homebrew:
     - isort                      # Python import sorter
 
   go_packages:
+    - golang.org/x/tools/gopls@latest                            # Go LSP server
     - github.com/golangci/golangci-lint/cmd/golangci-lint@latest  # Go linter
     - golang.org/x/tools/cmd/goimports@latest                    # Go import formatter
     - mvdan.cc/gofumpt@latest                                    # Stricter Go formatter
