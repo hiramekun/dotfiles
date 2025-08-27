@@ -80,6 +80,7 @@ homebrew:
     - ripgrep
     - sbt
     - sox
+    - terraform
     - terraform-ls
     - tmux
     - translate-shell
