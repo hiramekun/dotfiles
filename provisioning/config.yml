@@ -61,6 +61,7 @@ homebrew:
     - git
     - git-delta
     - git-flow
+    - helm
     - htop
     - jpeg
     - krew
