@@ -64,7 +64,7 @@ homebrew:
     - mecab
     - minikube
     - mycli
-    - mysql@5.7
+    - mysql@8.0
     - nkf
     - nvim
     - pandoc
@@ -75,7 +75,6 @@ homebrew:
     - sbt
     - sox
     - terraform
-    - terraform-ls
     - tmux
     - translate-shell
     - trash
