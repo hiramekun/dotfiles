@@ -43,9 +43,11 @@
 - name: install Python packages globally
   pip:
     name: '{{ item }}'
-    executable: pip3
+    executable: "{{ home_path }}/.asdf/shims/pip3"
   with_items: '{{ homebrew.python_packages }}'
   when: homebrew.python_packages
+  environment:
+    PATH: "{{ home_path }}/.asdf/shims:{{ ansible_env.PATH }}"
 
 - name: install Go packages globally
   shell: go install {{ item }}
