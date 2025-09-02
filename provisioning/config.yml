@@ -25,7 +25,6 @@ homebrew:
     - flux
     - google-chrome
     - google-japanese-ime
-    - hyperswitch
     - iterm2
     - jetbrains-toolbox
     - kap
