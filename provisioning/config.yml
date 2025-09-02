@@ -17,10 +17,8 @@ asdf:
 homebrew: 
   applications:
     - alfred
-    - android-studio
-    - appcleaner
+    - alt-tab
     - bettertouchtool
-    - biscuit
     - clipy
     - cursor
     - docker
@@ -33,12 +31,10 @@ homebrew:
     - kap
     - karabiner-elements
     - kitematic
-    - macs-fan-control
     - miro
     - mysqlworkbench
     - obsidian
     - postman
-    - pushplaylabs-sidekick
     - rstudio
     - sequel-ace
     - ShowyEdge
