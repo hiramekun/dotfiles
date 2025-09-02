@@ -1,5 +1,5 @@
 asdf:
-  dir: '{{ home_path }}/.asdf'
+  dir: "{{ home_path }}/.asdf"
   plugins:
     - nodejs
     - python
@@ -13,7 +13,7 @@ asdf:
     - name: ruby
       version: latest
 
-homebrew: 
+homebrew:
   applications:
     - alfred
     - alt-tab
@@ -49,6 +49,7 @@ homebrew:
     - direnv
     - docker
     - ffmpeg
+    - font-fira-code
     - gawk
     - gibo
     - git
@@ -83,52 +84,52 @@ homebrew:
     - vim
     - watch
     - wget
-    - lua-language-server        # Lua LSP
-    - gopls                      # Go LSP (will be installed via go install)
-    - shellcheck                 # Shell script linter
-    - shfmt                      # Shell script formatter
-    - rust-analyzer              # Rust LSP
-    - stylua                     # Lua formatter
-    - terraform-ls               # Terraform LSP
+    - lua-language-server # Lua LSP
+    - gopls # Go LSP (will be installed via go install)
+    - shellcheck # Shell script linter
+    - shfmt # Shell script formatter
+    - rust-analyzer # Rust LSP
+    - stylua # Lua formatter
+    - terraform-ls # Terraform LSP
 
   npm_packages:
-    - pyright                    # Python LSP
+    - pyright # Python LSP
     - typescript-language-server # TypeScript/JavaScript LSP
     - vscode-langservers-extracted # HTML, CSS, JSON, ESLint LSP
-    - yaml-language-server       # YAML LSP
-    - bash-language-server       # Bash LSP
-    - prettier                   # Multi-language formatter
-    - eslint                     # JavaScript/TypeScript linter
-    - "@fsouza/prettierd"       # Faster prettier daemon
+    - yaml-language-server # YAML LSP
+    - bash-language-server # Bash LSP
+    - prettier # Multi-language formatter
+    - eslint # JavaScript/TypeScript linter
+    - "@fsouza/prettierd" # Faster prettier daemon
 
   python_packages:
-    - black                      # Python formatter
-    - flake8                     # Python linter
-    - isort                      # Python import sorter
+    - black # Python formatter
+    - flake8 # Python linter
+    - isort # Python import sorter
 
   go_packages:
-    - golang.org/x/tools/gopls@latest                            # Go LSP server
-    - github.com/golangci/golangci-lint/cmd/golangci-lint@latest  # Go linter
-    - golang.org/x/tools/cmd/goimports@latest                    # Go import formatter
-    - mvdan.cc/gofumpt@latest                                    # Stricter Go formatter
-    - github.com/go-delve/delve/cmd/dlv@latest                   # Go debugger
+    - golang.org/x/tools/gopls@latest # Go LSP server
+    - github.com/golangci/golangci-lint/cmd/golangci-lint@latest # Go linter
+    - golang.org/x/tools/cmd/goimports@latest # Go import formatter
+    - mvdan.cc/gofumpt@latest # Stricter Go formatter
+    - github.com/go-delve/delve/cmd/dlv@latest # Go debugger
 
 link:
-  zsh/.zshrc:                 .zshrc
-  zsh/.zshenv:                .zshenv
-  zsh/.zprofile:              .zprofile
-  bash/.bash_profile:         .bash_profile
-  bash/.bashrc:               .bashrc
-  bash/local.bash:            local.bash
-  bash/common.bash:           common.bash
-  config/.ansible.cfg:        .ansible.cfg
-  config/.aws/config:         .aws/config
-  git/.gitconfig:             .gitconfig
-  git/.gitignore:             .gitignore
-  ide/.ideavimrc:             .ideavimrc
-  vim/.vimrc:                 .vimrc
-  tmux/.tmux.conf:            .tmux.conf
-  karabiner:                  .config/karabiner
-  fish:                       .config/fish
-  nvim:                       .config/nvim
-  spaceship:                  .config/spaceship
+  zsh/.zshrc: .zshrc
+  zsh/.zshenv: .zshenv
+  zsh/.zprofile: .zprofile
+  bash/.bash_profile: .bash_profile
+  bash/.bashrc: .bashrc
+  bash/local.bash: local.bash
+  bash/common.bash: common.bash
+  config/.ansible.cfg: .ansible.cfg
+  config/.aws/config: .aws/config
+  git/.gitconfig: .gitconfig
+  git/.gitignore: .gitignore
+  ide/.ideavimrc: .ideavimrc
+  vim/.vimrc: .vimrc
+  tmux/.tmux.conf: .tmux.conf
+  karabiner: .config/karabiner
+  fish: .config/fish
+  nvim: .config/nvim
+  spaceship: .config/spaceship
