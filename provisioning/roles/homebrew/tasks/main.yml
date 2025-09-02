@@ -50,11 +50,9 @@
     PATH: "{{ home_path }}/.asdf/shims:{{ ansible_env.PATH }}"
 
 - name: install Go packages globally
-  shell: |
-    source {{ home_path }}/.asdf/asdf.sh
-    go install {{ item }}
+  shell: go install {{ item }}
   with_items: '{{ homebrew.go_packages }}'
   when: homebrew.go_packages
   environment:
-    PATH: "{{ home_path }}/.asdf/shims:{{ ansible_env.PATH }}"
+    PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
     GOPATH: "{{ home_path }}/.go"

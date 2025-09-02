@@ -5,7 +5,6 @@ asdf:
     - python
     - ruby
     - java
-    - golang
   versions:
     - name: nodejs
       version: latest
@@ -55,6 +54,7 @@ homebrew:
     - git
     - git-delta
     - git-flow
+    - go
     - helm
     - htop
     - jpeg
