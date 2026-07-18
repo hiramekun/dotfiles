@@ -1,0 +1,66 @@
+min_version = "2026.7.0"
+
+[tools]
+node = "lts"
+python = "latest"
+ruby = "latest"
+java = "latest"
+go = "latest"
+terraform = "latest"
+
+# Language servers, formatters, linters, and debuggers are isolated by mise
+# instead of being installed globally into a runtime managed by asdf.
+"npm:pyright" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:yaml-language-server" = "latest"
+"npm:bash-language-server" = "latest"
+"npm:prettier" = "latest"
+"npm:eslint" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+
+"pipx:black" = "latest"
+"pipx:flake8" = "latest"
+"pipx:isort" = "latest"
+
+"go:golang.org/x/tools/gopls" = "latest"
+"go:github.com/golangci/golangci-lint/cmd/golangci-lint" = "latest"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+"go:mvdan.cc/gofumpt" = "latest"
+"go:github.com/go-delve/delve/cmd/dlv" = "latest"
+
+[tasks.setup]
+description = "Provision the complete macOS development environment"
+run = [
+  { task = "brew" },
+  { task = "tools" },
+  { task = "link" },
+  { task = "vim" },
+]
+
+[tasks.brew]
+description = "Install Homebrew formulae and casks from Brewfile"
+run = "brew bundle --file Brewfile"
+
+[tasks.tools]
+description = "Install runtimes and developer tools managed by mise"
+run = "mise install"
+
+[tasks.link]
+description = "Link configuration files into the home directory"
+file = "scripts/link-dotfiles"
+
+[tasks.vim]
+description = "Install dein.vim and Neovim plugins"
+file = "scripts/setup-vim"
+
+[tasks.test]
+description = "Run the dotfiles test suite"
+run = "./tests/run_all_tests.sh"
+
+[tasks.doctor]
+description = "Show mise and Homebrew environment diagnostics"
+run = [
+  "mise doctor",
+  "brew bundle check --file Brewfile",
+]

@@ -8,30 +8,20 @@ export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 export LSCOLORS=cxfxcxdxbxegedabagacad
 
-# asdf
-export ASDF_DIR="$HOME/.asdf"
-if [ -f "$ASDF_DIR/asdf.sh" ]; then
-  source "$ASDF_DIR/asdf.sh"
-fi
+# Treat the repository config as the global mise config so its runtimes and
+# editor tooling remain available outside the dotfiles directory.
+export MISE_GLOBAL_CONFIG_FILE="${MISE_GLOBAL_CONFIG_FILE:-${DOTFILES_PATH:-$HOME/dotfiles}/mise.toml}"
+export MISE_GLOBAL_CONFIG_ROOT="${MISE_GLOBAL_CONFIG_ROOT:-${DOTFILES_PATH:-$HOME/dotfiles}}"
 
-# Add Go and Python tools to PATH for Neovim LSP
-if [ -d "$HOME/.asdf/installs/golang" ]; then
-  # Find the latest Go version and add its bin to PATH
-  GO_VERSION=$(ls "$HOME/.asdf/installs/golang" | sort -V | tail -1)
-  if [ -n "$GO_VERSION" ] && [ -d "$HOME/.asdf/installs/golang/$GO_VERSION/packages/bin" ]; then
-    export PATH="$HOME/.asdf/installs/golang/$GO_VERSION/packages/bin:$PATH"
+if command -v mise >/dev/null 2>&1 && [ -z "${MISE_SHELL:-}" ]; then
+  if [ -n "${ZSH_VERSION:-}" ]; then
+    eval "$(mise activate zsh)"
+  elif [ -n "${BASH_VERSION:-}" ]; then
+    eval "$(mise activate bash)"
   fi
 fi
 
-if [ -d "$HOME/.asdf/installs/python" ]; then
-  # Find the latest Python version and add its bin to PATH
-  PYTHON_VERSION=$(ls "$HOME/.asdf/installs/python" | sort -V | tail -1)
-  if [ -n "$PYTHON_VERSION" ] && [ -d "$HOME/.asdf/installs/python/$PYTHON_VERSION/bin" ]; then
-    export PATH="$HOME/.asdf/installs/python/$PYTHON_VERSION/bin:$PATH"
-  fi
-fi
-
-# direnv (works well with asdf)
+# direnv
 if command -v direnv >/dev/null 2>&1; then
   # Detect current shell and use appropriate hook
   if [ -n "${ZSH_VERSION:-}" ]; then
@@ -41,6 +31,5 @@ if command -v direnv >/dev/null 2>&1; then
   fi
 fi
 
-export GOPATH=$(go env GOPATH 2>/dev/null || echo "$HOME/go")
+export GOPATH="${GOPATH:-$(go env GOPATH 2>/dev/null || echo "$HOME/go")}"
 export PATH="$PATH:$GOPATH/bin"
-

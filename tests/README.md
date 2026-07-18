@@ -101,32 +101,29 @@ python3 tests/test_scripts.py
 
 #### Missing Language Servers
 ```bash
-# Install via npm
-npm install -g pyright typescript-language-server
+# Install all mise-managed development tools
+mise run tools
 
-# Or run full setup
-sh up
+# Or run the full setup
+./up
 ```
 
 #### Missing Formatters
 ```bash
-# Install prettier
-npm install -g prettier
+# Install all mise-managed formatters
+mise run tools
 
-# Install black
-pip3 install black
-
-# Or run full setup
-sh up
+# Or run the full setup
+./up
 ```
 
 #### Plugin Loading Issues
 ```bash
 # Reinstall plugins
-nvim --headless -c "call dein#install()" -c "qall"
+mise run vim
 
 # Or run full setup
-sh up
+./up
 ```
 
 #### Performance Issues
@@ -196,10 +193,10 @@ Some warnings are expected during initial setup:
 - Language servers not yet configured
 - Formatters not installed
 
-Run `sh up` to complete the setup, then re-run tests.
+Run `./up` to complete the setup, then re-run tests.
 
 ### Getting Help
 1. Check Neovim health: `:checkhealth` in Neovim
 2. Review test output for specific error messages
-3. Ensure all dependencies are installed via `sh up`
+3. Ensure all dependencies are installed via `./up`
 4. Check the main dotfiles documentation in `CLAUDE.md`

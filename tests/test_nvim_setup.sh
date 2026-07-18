@@ -87,14 +87,14 @@ print_test "Language Server Protocol (LSP) Support"
 if command -v pyright-langserver >/dev/null 2>&1; then
     print_pass "Python LSP (pyright) available"
 else
-    print_warn "Python LSP (pyright) not found - run: npm install -g pyright"
+    print_warn "Python LSP (pyright) not found - run: mise run tools"
 fi
 
 # TypeScript LSP
 if command -v typescript-language-server >/dev/null 2>&1; then
     print_pass "TypeScript LSP available"
 else
-    print_warn "TypeScript LSP not found - run: npm install -g typescript-language-server"
+    print_warn "TypeScript LSP not found - run: mise run tools"
 fi
 
 # Test 5: Plugin System
@@ -127,14 +127,14 @@ print_test "Code Formatters and Linters"
 if command -v prettier >/dev/null 2>&1; then
     print_pass "Prettier formatter available"
 else
-    print_warn "Prettier not found - run: npm install -g prettier"
+    print_warn "Prettier not found - run: mise run tools"
 fi
 
 # black
 if command -v black >/dev/null 2>&1; then
     print_pass "Black Python formatter available"
 else
-    print_warn "Black not found - run: pip3 install black"
+    print_warn "Black not found - run: mise run tools"
 fi
 
 # Test 7: Configuration Files
@@ -232,7 +232,7 @@ echo ""
 echo "=========================================="
 echo "💡 Quick Tips"
 echo "=========================================="
-echo "• Install missing tools with: sh up"
+echo "• Install missing tools with: ./up"
 echo "• Telescope shortcuts: <leader>ff (files), <leader>fg (grep)"
 echo "• LSP shortcuts: gd (definition), gr (references), K (hover)"
 echo "• Format code: <leader>ca (code actions)"
