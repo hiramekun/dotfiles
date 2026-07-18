@@ -14,7 +14,16 @@ NC='\033[0m'
 # Test results tracking
 overall_status=0
 
-echo -e "${BLUE}📋 Step 1: Quick Environment Check${NC}"
+echo -e "${BLUE}📋 Step 1: mise Setup Tests${NC}"
+echo "-------------------------------------"
+if ./tests/test_mise_setup.sh; then
+    echo -e "${GREEN}✅ mise setup tests passed${NC}"
+else
+    echo -e "${RED}❌ mise setup tests failed${NC}"
+    overall_status=1
+fi
+
+echo -e "\n${BLUE}📋 Step 2: Quick Environment Check${NC}"
 echo "-------------------------------------"
 if ./tests/check_nvim.sh; then
     echo -e "${GREEN}✅ Environment check passed${NC}"
@@ -23,7 +32,7 @@ else
     overall_status=1
 fi
 
-echo -e "\n${BLUE}📋 Step 2: Unit Tests${NC}"
+echo -e "\n${BLUE}📋 Step 3: Unit Tests${NC}"
 echo "-------------------------------------"
 if python3 tests/test_scripts.py; then
     echo -e "${GREEN}✅ Unit tests passed${NC}"
@@ -32,7 +41,7 @@ else
     overall_status=1
 fi
 
-echo -e "\n${BLUE}📋 Step 3: Comprehensive Functionality Tests${NC}"
+echo -e "\n${BLUE}📋 Step 4: Comprehensive Functionality Tests${NC}"
 echo "-------------------------------------"
 echo -e "${YELLOW}ℹ️  Note: This test may show warnings for optional components${NC}"
 if python3 tests/test_nvim_functionality.py; then
@@ -61,7 +70,7 @@ else
     echo -e "${RED}🔧 Please address the failed tests before using Neovim.${NC}"
     echo ""
     echo "💡 Common fixes:"
-    echo "  • Run: sh up (to complete setup)"
+    echo "  • Run: ./up (to complete setup)"
     echo "  • Install missing tools manually"
     echo "  • Check network connectivity"
 fi

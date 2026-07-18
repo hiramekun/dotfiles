@@ -2,11 +2,6 @@ source "$DOTFILES_PATH/zsh/plugin.zsh"
 source "$DOTFILES_PATH/zsh/alias.zsh"
 source "$DOTFILES_PATH/zsh/console.zsh"
 
-# asdf completions (ASDF_DIR is set in shell/env.sh)
-if [ -n "${ASDF_DIR:-}" ]; then
-  fpath=(${ASDF_DIR}/completions $fpath)
-fi
-
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
@@ -66,3 +61,4 @@ if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_ROOT="${DOTFILES_PATH:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+DEIN_DIR="$DOTFILES_ROOT/vim/dein/repos/github.com/Shougo/dein.vim"
+
+if [ ! -d "$DEIN_DIR/.git" ]; then
+  mkdir -p "$(dirname "$DEIN_DIR")"
+  git clone --depth 1 https://github.com/Shougo/dein.vim "$DEIN_DIR"
+fi
+
+if ! command -v nvim >/dev/null 2>&1; then
+  printf 'Neovim is not available. Run `mise run brew` first.\n' >&2
+  exit 1
+fi
+
+nvim --headless -i NONE \
+  -c 'if dein#check_install() | call dein#install() | endif' \
+  -c 'qall'
+
+printf 'Neovim plugins are installed.\n'
+
+MARKDOWN_PREVIEW_DIR="$DOTFILES_ROOT/vim/dein/repos/github.com/iamcco/markdown-preview.nvim/app"
+if [ -d "$MARKDOWN_PREVIEW_DIR" ] && [ ! -d "$MARKDOWN_PREVIEW_DIR/node_modules" ]; then
+  npm --prefix "$MARKDOWN_PREVIEW_DIR" install
+fi

@@ -9,18 +9,41 @@ Inspired by this repository.
 First, get Xcode build tools.  
 Then follow below.
 
+ ```sh
+ git clone https://github.com/hiramekun/dotfiles.git ~/dotfiles
+ cd ~/dotfiles
+ ./up
  ```
- $ git clone https://github.com/hiramekun/dotfiles.git
- $ cd dotfiles
- $ sh up
- ``` 
+
+`up` installs Homebrew and mise when needed, then runs `mise run setup`. After the
+first setup, each provisioning area can also be run independently:
+
+```sh
+mise run brew    # Homebrew formulae and casks
+mise run tools   # runtimes, LSP servers, formatters, and linters
+mise run link    # dotfile symlinks
+mise run vim     # dein.vim and Neovim plugins
+mise run doctor  # environment diagnostics
+mise run test    # test suite
+```
+
+`mise run brew` installs missing Brewfile entries but does not upgrade existing
+packages. Run `brew bundle upgrade --file Brewfile` explicitly when you want to
+upgrade everything declared in the Brewfile.
+
+The shell configuration exposes this repository's `mise.toml` as the global mise
+config, so the managed runtimes and editor tools remain available in every
+working directory. A legacy `~/.tool-versions` is excluded from discovery, while
+project-level `mise.toml` files below the home directory can still override
+versions. Ruby uses mise's precompiled Apple Silicon binary when available, and
+`uv` provides the isolated environments used by the mise pipx backend.
  
   - zsh
  - vim, nvim (with nvim-cmp, LSP, and Telescope)
   - karabiner settings
   - tmux
-  - install apps and packages by homebrew
-  - asdf for version management (Node.js, Python, Ruby, etc.)
+  - install apps and system packages with Homebrew Bundle
+  - mise for runtime and developer-tool management (Node.js, Python, Ruby, etc.)
 
 ## Neovim Extension System
 
@@ -28,7 +51,7 @@ This dotfiles configuration provides a comprehensive Neovim development environm
 
 ### Plugin Management with dein.vim
 
-Plugins are managed using [dein.vim](https://github.com/Shougo/dein.vim), a dark-powered Vim/Neovim plugin manager. The plugin configuration is defined in `nvim/init.vim` and automatically installed during provisioning.
+Plugins are managed using [dein.vim](https://github.com/Shougo/dein.vim), a dark-powered Vim/Neovim plugin manager. The plugin configuration is defined in `nvim/init.vim` and automatically installed by `mise run vim`.
 
 **Manual plugin installation:**
 ```vim
@@ -180,16 +203,16 @@ Plugins are managed using [dein.vim](https://github.com/Shougo/dein.vim), a dark
 
 ### Installation & Dependencies
 
-The provisioning system automatically:
+The mise setup tasks automatically:
 
-1. **Installs Neovim** via Homebrew (`nvim` package)
+1. **Installs Neovim** via Homebrew (`neovim` formula)
 2. **Clones dein.vim** plugin manager to `~/dotfiles/vim/dein/repos/github.com/Shougo/dein.vim`
 3. **Installs all plugins** by running `nvim --headless -c "call dein#install()" -c "qall"`
 4. **Installs LSP servers and tools**:
    - **Via Homebrew**: `lua-language-server`, `rust-analyzer`, `terraform-ls`, `shellcheck`, `shfmt`, `stylua`
-   - **Via npm**: `pyright`, `typescript-language-server`, `vscode-langservers-extracted`, `yaml-language-server`, `bash-language-server`, `prettier`, `eslint`, `prettierd`
-   - **Via Python pip**: `black`, `flake8`, `isort`
-   - **Via Go install**: `gopls`, `golangci-lint`, `goimports`, `gofumpt`, `dlv` (Go debugger)
+   - **Via mise npm backend**: `pyright`, `typescript-language-server`, `vscode-langservers-extracted`, `yaml-language-server`, `bash-language-server`, `prettier`, `eslint`, `prettierd`
+   - **Via mise pipx backend**: `black`, `flake8`, `isort`
+   - **Via mise Go backend**: `gopls`, `golangci-lint`, `goimports`, `gofumpt`, `dlv` (Go debugger)
 5. **Builds Node.js dependencies** for markdown-preview plugin
 6. **Compiles native extensions** like telescope-fzf-native for optimal performance
 

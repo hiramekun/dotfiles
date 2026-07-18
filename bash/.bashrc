@@ -1,7 +1,7 @@
 source ~/common.bash
 source ~/local.bash
 
-# Load dotfiles environment (includes asdf and homebrew setup)
+# Load dotfiles environment (includes mise and Homebrew setup)
 # Ensure DOTFILES_PATH is defined, defaulting to $HOME/dotfiles
 DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
