@@ -33,7 +33,10 @@ upgrade everything declared in the Brewfile.
 
 The shell configuration exposes this repository's `mise.toml` as the global mise
 config, so the managed runtimes and editor tools remain available in every
-working directory. Project-level `mise.toml` files can still override versions.
+working directory. A legacy `~/.tool-versions` is excluded from discovery, while
+project-level `mise.toml` files below the home directory can still override
+versions. Ruby uses mise's precompiled Apple Silicon binary when available, and
+`uv` provides the isolated environments used by the mise pipx backend.
  
   - zsh
  - vim, nvim (with nvim-cmp, LSP, and Telescope)

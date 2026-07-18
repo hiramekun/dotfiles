@@ -1,5 +1,10 @@
 min_version = "2026.7.0"
 
+[settings.ruby]
+# mise 2026.7 still compiles Ruby by default. Prefer the official Apple
+# Silicon binary and only fall back to ruby-build when one is unavailable.
+compile = false
+
 [tools]
 node = "lts"
 python = "latest"
@@ -7,6 +12,7 @@ ruby = "latest"
 java = "latest"
 go = "latest"
 terraform = "latest"
+uv = "latest"
 
 # Language servers, formatters, linters, and debuggers are isolated by mise
 # instead of being installed globally into a runtime managed by asdf.
@@ -19,9 +25,9 @@ terraform = "latest"
 "npm:eslint" = "latest"
 "npm:@fsouza/prettierd" = "latest"
 
-"pipx:black" = "latest"
-"pipx:flake8" = "latest"
-"pipx:isort" = "latest"
+"pipx:black" = { version = "latest", depends = ["uv"] }
+"pipx:flake8" = { version = "latest", depends = ["uv"] }
+"pipx:isort" = { version = "latest", depends = ["uv"] }
 
 "go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/golangci/golangci-lint/cmd/golangci-lint" = "latest"

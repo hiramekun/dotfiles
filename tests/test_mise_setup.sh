@@ -13,9 +13,13 @@ config_path = pathlib.Path(sys.argv[1])
 with config_path.open("rb") as config_file:
     config = tomllib.load(config_file)
 
-required_tools = {"node", "python", "ruby", "java", "go", "terraform"}
+required_tools = {"node", "python", "ruby", "java", "go", "terraform", "uv"}
 missing_tools = required_tools - config["tools"].keys()
 assert not missing_tools, f"missing mise tools: {sorted(missing_tools)}"
+
+assert config["settings"]["ruby"]["compile"] is False
+for tool in ("pipx:black", "pipx:flake8", "pipx:isort"):
+    assert config["tools"][tool]["depends"] == ["uv"]
 
 required_tasks = {"setup", "brew", "tools", "link", "vim", "test", "doctor"}
 missing_tasks = required_tasks - config["tasks"].keys()
@@ -29,6 +33,8 @@ if grep -q '^brew "docker"$' "$REPO_ROOT/Brewfile"; then
   exit 1
 fi
 grep -q 'MISE_GLOBAL_CONFIG_FILE' "$REPO_ROOT/shell/env.sh"
+grep -q 'MISE_CEILING_PATHS' "$REPO_ROOT/shell/env.sh"
+grep -q 'MISE_CEILING_PATHS' "$REPO_ROOT/up"
 if find "$REPO_ROOT/provisioning" -type f -print -quit 2>/dev/null | grep -q .; then
   printf 'legacy provisioning files still exist\n' >&2
   exit 1
