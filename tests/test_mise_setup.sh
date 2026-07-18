@@ -43,6 +43,11 @@ fi
 bash -n "$REPO_ROOT/up"
 bash -n "$REPO_ROOT/scripts/link-dotfiles"
 bash -n "$REPO_ROOT/scripts/setup-vim"
+grep -q 'dein#check_install()' "$REPO_ROOT/scripts/setup-vim"
+if grep -q 'max_line_len' "$REPO_ROOT/nvim/init.vim"; then
+  printf 'go.nvim max_line_len requires the golines formatter\n' >&2
+  exit 1
+fi
 
 TEST_ROOT="$(mktemp -d)"
 trap 'rm -rf "$TEST_ROOT"' EXIT

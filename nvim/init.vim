@@ -433,7 +433,6 @@ if go_nvim then
   go_nvim.setup({
     goimport = 'gopls',
     gofmt = 'gofumpt',
-    max_line_len = 120,
     tag_transform = false,
     test_dir = '',
     comment_placeholder = '   ',
@@ -624,4 +623,3 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic list' })
 EOF
-

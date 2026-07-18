@@ -16,7 +16,11 @@ if ! command -v nvim >/dev/null 2>&1; then
   exit 1
 fi
 
-nvim --headless -c 'call dein#install()' -c 'qall'
+nvim --headless -i NONE \
+  -c 'if dein#check_install() | call dein#install() | endif' \
+  -c 'qall'
+
+printf 'Neovim plugins are installed.\n'
 
 MARKDOWN_PREVIEW_DIR="$DOTFILES_ROOT/vim/dein/repos/github.com/iamcco/markdown-preview.nvim/app"
 if [ -d "$MARKDOWN_PREVIEW_DIR" ] && [ ! -d "$MARKDOWN_PREVIEW_DIR/node_modules" ]; then
