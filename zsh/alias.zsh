@@ -45,3 +45,6 @@ alias toutf8='nkf --overwrite --oc=UTF-8'
 # translation
 alias traen='trans {en=ja} -no-auto'
 alias traja='trans {ja=en} -no-auto'
+
+# k8s
+alias k=kubectl
