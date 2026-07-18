@@ -27,6 +27,10 @@ mise run doctor  # environment diagnostics
 mise run test    # test suite
 ```
 
+`mise run brew` installs missing Brewfile entries but does not upgrade existing
+packages. Run `brew bundle upgrade --file Brewfile` explicitly when you want to
+upgrade everything declared in the Brewfile.
+
 The shell configuration exposes this repository's `mise.toml` as the global mise
 config, so the managed runtimes and editor tools remain available in every
 working directory. Project-level `mise.toml` files can still override versions.

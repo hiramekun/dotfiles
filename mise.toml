@@ -40,7 +40,7 @@ run = [
 
 [tasks.brew]
 description = "Install Homebrew formulae and casks from Brewfile"
-run = "brew bundle --file Brewfile"
+run = "brew bundle --no-upgrade --file Brewfile"
 
 [tasks.tools]
 description = "Install runtimes and developer tools managed by mise"
@@ -62,5 +62,5 @@ run = "./tests/run_all_tests.sh"
 description = "Show mise and Homebrew environment diagnostics"
 run = [
   "mise doctor",
-  "brew bundle check --file Brewfile",
+  "brew bundle check --no-upgrade --file Brewfile",
 ]

@@ -1,5 +1,6 @@
 .DS_Store
 .nvimlog
+nvim.log
 __pycache__
 *.pyc
 vim/dein/*

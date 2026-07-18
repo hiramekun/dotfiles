@@ -20,9 +20,14 @@ assert not missing_tools, f"missing mise tools: {sorted(missing_tools)}"
 required_tasks = {"setup", "brew", "tools", "link", "vim", "test", "doctor"}
 missing_tasks = required_tasks - config["tasks"].keys()
 assert not missing_tasks, f"missing mise tasks: {sorted(missing_tasks)}"
+assert "--no-upgrade" in config["tasks"]["brew"]["run"]
 PY
 
 grep -q 'brew "mise"' "$REPO_ROOT/Brewfile"
+if grep -q '^brew "docker"$' "$REPO_ROOT/Brewfile"; then
+  printf 'Docker CLI formula conflicts with the Docker Desktop cask\n' >&2
+  exit 1
+fi
 grep -q 'MISE_GLOBAL_CONFIG_FILE' "$REPO_ROOT/shell/env.sh"
 if find "$REPO_ROOT/provisioning" -type f -print -quit 2>/dev/null | grep -q .; then
   printf 'legacy provisioning files still exist\n' >&2
