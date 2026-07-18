@@ -35,6 +35,8 @@ fi
 grep -q 'MISE_GLOBAL_CONFIG_FILE' "$REPO_ROOT/shell/env.sh"
 grep -q 'MISE_CEILING_PATHS' "$REPO_ROOT/shell/env.sh"
 grep -q 'MISE_CEILING_PATHS' "$REPO_ROOT/up"
+grep -q 'HOMEBREW_NO_ASK=1 brew install mise' "$REPO_ROOT/up"
+grep -q 'HOMEBREW_NO_ASK=1 brew upgrade mise' "$REPO_ROOT/up"
 if find "$REPO_ROOT/provisioning" -type f -print -quit 2>/dev/null | grep -q .; then
   printf 'legacy provisioning files still exist\n' >&2
   exit 1

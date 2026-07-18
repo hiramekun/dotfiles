@@ -64,10 +64,10 @@ install_homebrew() {
 
 install_mise() {
   if brew list --formula mise >/dev/null 2>&1; then
-    brew upgrade mise
+    HOMEBREW_NO_ASK=1 brew upgrade mise
   else
     printf 'Installing mise...\n'
-    brew install mise
+    HOMEBREW_NO_ASK=1 brew install mise
   fi
 }
 
