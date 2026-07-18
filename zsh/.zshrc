@@ -63,3 +63,4 @@ if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 if [ -f '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takaaki.hirano/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 export PATH="$HOME/.local/bin:$PATH"
 source <(kubectl completion zsh)
+export PATH="/opt/homebrew/opt/trash/bin:$PATH"
