@@ -34,6 +34,8 @@ uv = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:mvdan.cc/gofumpt" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"
+"go:google.golang.org/protobuf/cmd/protoc-gen-go"= "latest"
+"go:google.golang.org/grpc/cmd/protoc-gen-go-grpc"= "latest"
 
 [tasks.setup]
 description = "Provision the complete macOS development environment"
