@@ -5,6 +5,7 @@ alias rm='trash'
 alias emacs="emacs -nw"
 alias cp='cp -v'
 alias mv='mv -v'
+alias gat='gat --theme solarized-dark'
 
 # git
 alias gad='git add'
