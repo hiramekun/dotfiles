@@ -29,8 +29,11 @@ if dein#load_state('~/dotfiles/vim/dein')
         call dein#add('nvim-telescope/telescope-fzf-native.nvim', {'build': 'make'})
         
         " treesitter for better syntax highlighting
-        call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
-        call dein#add('nvim-treesitter/nvim-treesitter-textobjects')
+        " NOTE: 'master' is frozen and incompatible with Neovim 0.12+
+        " (https://github.com/nvim-treesitter/nvim-treesitter/issues/8618),
+        " so we track 'main', which is a full rewrite requiring tree-sitter-cli.
+        call dein#add('nvim-treesitter/nvim-treesitter', {'rev': 'main', 'hook_post_update': 'TSUpdate'})
+        call dein#add('nvim-treesitter/nvim-treesitter-textobjects', {'rev': 'main'})
         
         " formatting and linting
         call dein#add('stevearc/conform.nvim')
@@ -96,6 +99,7 @@ if dein#load_state('~/dotfiles/vim/dein')
         " Markdown and documentation
         call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
                                         \ 'build': 'sh -c "cd app && yarn install"' })
+        call dein#add('OXY2DEV/markview.nvim')
         call dein#add('eigenfoo/stan-vim')
         
         " Productivity
@@ -147,7 +151,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- Setup colorscheme
 local tokyonight = safe_require('tokyonight')
@@ -298,29 +302,48 @@ if telescope then
   vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'Document symbols' })
 end
 
--- Enhanced Treesitter setup
-local treesitter = safe_require('nvim-treesitter.configs')
-if treesitter then
-  treesitter.setup {
-    ensure_installed = { 
-      "python", "javascript", "typescript", "lua", "go", "ruby", "yaml", "json", 
-      "html", "css", "bash", "rust", "terraform", "dockerfile", "helm"
-    },
-    highlight = { enable = true },
-    indent = { enable = true },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-        },
-      },
-    },
-  }
+-- Enhanced Treesitter setup (nvim-treesitter 'main' branch API)
+local ts_parsers = {
+  "python", "javascript", "typescript", "lua", "go", "ruby", "yaml", "json",
+  "html", "css", "bash", "rust", "terraform", "dockerfile", "helm",
+  "markdown", "markdown_inline"
+}
+local ts_filetypes = {
+  "python", "javascript", "typescript", "lua", "go", "ruby", "yaml", "json",
+  "html", "css", "sh", "bash", "rust", "terraform", "dockerfile", "helm",
+  "markdown"
+}
+
+local nvim_treesitter = safe_require('nvim-treesitter')
+if nvim_treesitter then
+  nvim_treesitter.install(ts_parsers)
+
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = ts_filetypes,
+    callback = function()
+      vim.treesitter.start()
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+  })
+end
+
+local treesitter_textobjects = safe_require('nvim-treesitter-textobjects')
+if treesitter_textobjects then
+  treesitter_textobjects.setup({
+    select = { lookahead = true },
+  })
+
+  local ts_select = require('nvim-treesitter-textobjects.select')
+  vim.keymap.set({ 'x', 'o' }, 'af', function() ts_select.select_textobject('@function.outer', 'textobjects') end)
+  vim.keymap.set({ 'x', 'o' }, 'if', function() ts_select.select_textobject('@function.inner', 'textobjects') end)
+  vim.keymap.set({ 'x', 'o' }, 'ac', function() ts_select.select_textobject('@class.outer', 'textobjects') end)
+  vim.keymap.set({ 'x', 'o' }, 'ic', function() ts_select.select_textobject('@class.inner', 'textobjects') end)
+end
+
+-- Markdown rendering
+local markview = safe_require('markview')
+if markview then
+  markview.setup()
 end
 
 -- Enhanced formatting and linting
@@ -440,6 +463,9 @@ if go_nvim then
     lsp_gofumpt = true,
     lsp_on_attach = nil,
     dap_debug = true,
+    textobjects = false, -- handled by our own nvim-treesitter-textobjects setup;
+                          -- go.nvim's built-in version calls the legacy
+                          -- nvim-treesitter.configs API removed on 'main'
   })
   
   -- Go-specific keymaps
