@@ -7,48 +7,48 @@ DOTFILES_ROOT="${DOTFILES_PATH:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 TARGET_HOME="${DOTFILES_HOME:-$HOME}"
 
 backup_destination() {
-  local destination="$1"
-  local backup="${destination}.bak"
-  local suffix=1
+    local destination="$1"
+    local backup="${destination}.bak"
+    local suffix=1
 
-  while [ -e "$backup" ] || [ -L "$backup" ]; do
-    backup="${destination}.bak.${suffix}"
-    suffix=$((suffix + 1))
-  done
+    while [ -e "$backup" ] || [ -L "$backup" ]; do
+        backup="${destination}.bak.${suffix}"
+        suffix=$((suffix + 1))
+    done
 
-  mv "$destination" "$backup"
-  printf 'Backed up %s to %s\n' "$destination" "$backup"
+    mv "$destination" "$backup"
+    printf 'Backed up %s to %s\n' "$destination" "$backup"
 }
 
 link_file() {
-  local relative_source="$1"
-  local relative_destination="$2"
-  local source_path="$DOTFILES_ROOT/$relative_source"
-  local destination_path="$TARGET_HOME/$relative_destination"
+    local relative_source="$1"
+    local relative_destination="$2"
+    local source_path="$DOTFILES_ROOT/$relative_source"
+    local destination_path="$TARGET_HOME/$relative_destination"
 
-  if [ ! -e "$source_path" ] && [ ! -L "$source_path" ]; then
-    printf 'Missing source: %s\n' "$source_path" >&2
-    return 1
-  fi
-
-  mkdir -p "$(dirname "$destination_path")"
-
-  if [ -L "$destination_path" ]; then
-    if [ "$(readlink "$destination_path")" = "$source_path" ]; then
-      printf 'Already linked: ~/%s\n' "$relative_destination"
-      return
+    if [ ! -e "$source_path" ] && [ ! -L "$source_path" ]; then
+        printf 'Missing source: %s\n' "$source_path" >&2
+        return 1
     fi
-  elif [ -e "$destination_path" ]; then
-    backup_destination "$destination_path"
-  fi
 
-  ln -sfn "$source_path" "$destination_path"
-  printf 'Linked ~/%s -> %s\n' "$relative_destination" "$relative_source"
+    mkdir -p "$(dirname "$destination_path")"
+
+    if [ -L "$destination_path" ]; then
+        if [ "$(readlink "$destination_path")" = "$source_path" ]; then
+            printf 'Already linked: ~/%s\n' "$relative_destination"
+            return
+        fi
+    elif [ -e "$destination_path" ]; then
+        backup_destination "$destination_path"
+    fi
+
+    ln -sfn "$source_path" "$destination_path"
+    printf 'Linked ~/%s -> %s\n' "$relative_destination" "$relative_source"
 }
 
 while IFS='|' read -r relative_source relative_destination; do
-  [ -n "$relative_source" ] || continue
-  link_file "$relative_source" "$relative_destination"
+    [ -n "$relative_source" ] || continue
+    link_file "$relative_source" "$relative_destination"
 done <<'LINKS'
 zsh/.zshrc|.zshrc
 zsh/.zshenv|.zshenv
@@ -63,6 +63,7 @@ git/.gitignore|.gitignore
 ide/.ideavimrc|.ideavimrc
 vim/.vimrc|.vimrc
 tmux/.tmux.conf|.tmux.conf
+ghostty|.config/ghostty
 karabiner|.config/karabiner
 nvim|.config/nvim
 spaceship|.config/spaceship
