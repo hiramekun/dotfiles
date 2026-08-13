@@ -37,12 +37,57 @@ uv = "latest"
 "go:google.golang.org/protobuf/cmd/protoc-gen-go"= "latest"
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc"= "latest"
 
+# Whole-file and whole-directory symlinks into $HOME, applied declaratively by
+# `mise bootstrap dotfiles apply` (replaces the former scripts/link-dotfiles).
+# Sources are relative to this repository; existing files are never overwritten
+# without --force, so re-running is safe and idempotent.
+[dotfiles]
+"~/.zshrc" = { source = "zsh/.zshrc", mode = "symlink" }
+"~/.zshenv" = { source = "zsh/.zshenv", mode = "symlink" }
+"~/.zprofile" = { source = "zsh/.zprofile", mode = "symlink" }
+"~/.bash_profile" = { source = "bash/.bash_profile", mode = "symlink" }
+"~/.bashrc" = { source = "bash/.bashrc", mode = "symlink" }
+"~/local.bash" = { source = "bash/local.bash", mode = "symlink" }
+"~/common.bash" = { source = "bash/common.bash", mode = "symlink" }
+"~/.aws/config" = { source = "config/.aws/config", mode = "symlink" }
+"~/.gitconfig" = { source = "git/.gitconfig", mode = "symlink" }
+"~/.gitignore" = { source = "git/.gitignore", mode = "symlink" }
+"~/.ideavimrc" = { source = "ide/.ideavimrc", mode = "symlink" }
+"~/.vimrc" = { source = "vim/.vimrc", mode = "symlink" }
+"~/.tmux.conf" = { source = "tmux/.tmux.conf", mode = "symlink" }
+"~/.config/ghostty" = { source = "ghostty", mode = "symlink" }
+"~/.config/karabiner" = { source = "karabiner", mode = "symlink" }
+"~/.config/nvim" = { source = "nvim", mode = "symlink" }
+"~/.config/spaceship" = { source = "spaceship", mode = "symlink" }
+
+# Ensure zsh stays the login shell (applied with chsh; a no-op when already set).
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
+# macOS preferences captured from the current machine so a fresh install
+# reproduces them. Curated tables compile into the matching `defaults` domains.
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+fn_state = true
+
+[bootstrap.macos.dock]
+autohide = true
+tilesize = 49
+
+[bootstrap.macos.finder]
+show_all_files = true
+
+[bootstrap.macos.defaults]
+"NSGlobalDomain" = { AppleInterfaceStyle = "Dark" }
+
 [tasks.setup]
 description = "Provision the complete macOS development environment"
 run = [
   { task = "brew" },
   { task = "tools" },
   { task = "link" },
+  { task = "defaults" },
   { task = "vim" },
 ]
 
@@ -55,8 +100,15 @@ description = "Install runtimes and developer tools managed by mise"
 run = "mise install"
 
 [tasks.link]
-description = "Link configuration files into the home directory"
-file = "scripts/link-dotfiles"
+description = "Symlink configuration files into $HOME from the [dotfiles] table"
+run = "mise bootstrap dotfiles apply --yes"
+
+[tasks.defaults]
+description = "Apply the login shell and macOS defaults declared in [bootstrap.*]"
+run = [
+  "mise bootstrap user apply --yes",
+  "mise bootstrap macos defaults apply --yes",
+]
 
 [tasks.vim]
 description = "Install dein.vim and Neovim plugins"

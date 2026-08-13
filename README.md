@@ -38,7 +38,8 @@ After the initial setup, each area can be updated independently:
 | `mise run setup` | Run the complete setup |
 | `mise run brew` | Install missing Homebrew dependencies |
 | `mise run tools` | Install runtimes and development tools |
-| `mise run link` | Create dotfile symlinks |
+| `mise run link` | Symlink dotfiles from the `[dotfiles]` table |
+| `mise run defaults` | Apply the login shell and macOS defaults |
 | `mise run vim` | Install dein.vim and Neovim plugins |
 | `mise run doctor` | Check the mise and Homebrew environment |
 | `mise run test` | Run the test suite |
@@ -58,6 +59,19 @@ editor tooling such as language servers, formatters, linters, and debuggers.
 The shell configuration uses this repository's `mise.toml` as the global mise
 configuration. Project-level `mise.toml` files can override its versions, while
 the legacy `~/.tool-versions` is excluded from discovery.
+
+## Dotfiles and macOS defaults
+
+Symlinks, the login shell, and macOS preferences are declared directly in
+[mise.toml](mise.toml) and applied with [`mise bootstrap`](https://mise.jdx.dev/cli/bootstrap.html):
+
+- `[dotfiles]` maps each `$HOME` target to a source in this repository and is
+  applied by `mise run link` (`mise bootstrap dotfiles apply`). mise refuses to
+  overwrite an existing real file without `--force` and does not create `.bak`
+  backups, so move any conflicting file aside before the first run.
+- `[bootstrap.user]` keeps zsh as the login shell.
+- `[bootstrap.macos.*]` captures keyboard, Dock, Finder, and appearance
+  preferences; `mise run defaults` applies them.
 
 ## Neovim
 
@@ -95,7 +109,7 @@ To install newly added plugins manually, run this inside Neovim:
 ```text
 .
 ├── Brewfile           # Homebrew dependencies
-├── mise.toml          # Runtimes, tools, and setup tasks
+├── mise.toml          # Runtimes, tools, dotfiles, macOS defaults, and tasks
 ├── up                 # Bootstrap entry point
 ├── scripts/           # Provisioning and utility scripts
 ├── nvim/ and vim/     # Neovim and Vim configuration
