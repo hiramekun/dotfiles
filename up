@@ -4,8 +4,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_PATH="${DOTFILES_PATH:-$SCRIPT_DIR}"
-# Keep an existing asdf-era ~/.tool-versions from being merged into this
-# repository's mise configuration during bootstrap.
+# Prevent mise from discovering config files above $HOME (e.g. a stray
+# ~/.tool-versions or ~/mise.toml) from being merged into this repository's
+# mise configuration during bootstrap.
 export MISE_CEILING_PATHS="${MISE_CEILING_PATHS:-$HOME}"
 
 print_header() {

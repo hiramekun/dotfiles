@@ -12,8 +12,9 @@ export LSCOLORS=cxfxcxdxbxegedabagacad
 # editor tooling remain available outside the dotfiles directory.
 export MISE_GLOBAL_CONFIG_FILE="${MISE_GLOBAL_CONFIG_FILE:-${DOTFILES_PATH:-$HOME/dotfiles}/mise.toml}"
 export MISE_GLOBAL_CONFIG_ROOT="${MISE_GLOBAL_CONFIG_ROOT:-${DOTFILES_PATH:-$HOME/dotfiles}}"
-# Ignore legacy global files such as ~/.tool-versions while continuing to
-# discover project-level mise configuration below the home directory.
+# Prevent mise from discovering config files above $HOME (e.g. a stray
+# ~/.tool-versions or ~/mise.toml) so the repository config stays authoritative,
+# while still discovering project-level mise configuration below the home directory.
 export MISE_CEILING_PATHS="${MISE_CEILING_PATHS:-$HOME}"
 
 if command -v mise >/dev/null 2>&1 && [ -z "${MISE_SHELL:-}" ]; then
