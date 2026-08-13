@@ -55,6 +55,7 @@ if find "$REPO_ROOT/provisioning" -type f -print -quit 2>/dev/null | grep -q .; 
 fi
 
 bash -n "$REPO_ROOT/up"
+bash -n "$REPO_ROOT/.bin/install.sh"
 bash -n "$REPO_ROOT/scripts/setup-vim"
 grep -q 'dein#check_install()' "$REPO_ROOT/scripts/setup-vim"
 if grep -q 'max_line_len' "$REPO_ROOT/nvim/init.vim"; then

@@ -32,18 +32,27 @@ BANNER
   printf '\033[0m\n'
 }
 
-check_platform() {
-  local xcode_check
-
+require_apple_silicon_macos() {
   if [ "$(uname -s)" != "Darwin" ] || [ "$(uname -m)" != "arm64" ]; then
     printf 'This setup supports macOS on Apple Silicon only.\n' >&2
     exit 1
   fi
+}
 
-  if ! xcode-select -p >/dev/null 2>&1; then
-    printf 'Install Xcode Command Line Tools with `xcode-select --install`, then rerun this script.\n' >&2
-    exit 1
+install_homebrew() {
+  if ! command -v brew >/dev/null 2>&1; then
+    printf 'Installing Homebrew (this also installs the Xcode Command Line Tools and git)...\n'
+    # The Homebrew installer installs the Command Line Tools when missing, which
+    # provides git for the rest of the setup. NONINTERACTIVE skips its
+    # confirmation prompt so the `curl | bash` bootstrap does not stall on stdin.
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+}
+
+accept_xcode_license() {
+  local xcode_check
 
   xcode_check="$(/usr/bin/xcrun clang 2>&1 || true)"
   case "$xcode_check" in
@@ -52,15 +61,6 @@ check_platform() {
       sudo xcodebuild -license accept
       ;;
   esac
-}
-
-install_homebrew() {
-  if ! command -v brew >/dev/null 2>&1; then
-    printf 'Installing Homebrew...\n'
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
-
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 install_mise() {
@@ -85,8 +85,9 @@ run_mise_task() {
 
 main() {
   print_header
-  check_platform
+  require_apple_silicon_macos
   install_homebrew
+  accept_xcode_license
   install_mise
   run_mise_task "$@"
 }
