@@ -13,21 +13,23 @@ Inspired by [creasty/dotfiles](https://github.com/creasty/dotfiles).
 
 ## Setup
 
-Install the Xcode Command Line Tools first:
+On a fresh machine, one command provisions everything. It installs Homebrew
+(whose installer also installs the Xcode Command Line Tools and git), clones
+this repository into `~/dotfiles` with that git, and runs the complete setup:
 
 ```sh
-xcode-select --install
+curl -fsSL https://raw.githubusercontent.com/hiramekun/dotfiles/main/install.sh | bash
 ```
 
-Then clone and provision the environment:
+If the repository is already cloned, run the bootstrap directly:
 
 ```sh
-git clone https://github.com/hiramekun/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./up
 ```
 
-`up` installs Homebrew and mise when needed, then runs the complete setup.
+`up` installs Homebrew (with the Command Line Tools and git) and mise when
+needed, then runs the complete setup.
 
 ## Commands
 
@@ -110,6 +112,7 @@ To install newly added plugins manually, run this inside Neovim:
 .
 ├── Brewfile           # Homebrew dependencies
 ├── mise.toml          # Runtimes, tools, dotfiles, macOS defaults, and tasks
+├── install.sh         # curl one-line bootstrap for a fresh machine
 ├── up                 # Bootstrap entry point
 ├── scripts/           # Provisioning and utility scripts
 ├── nvim/ and vim/     # Neovim and Vim configuration
