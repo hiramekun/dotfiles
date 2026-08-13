@@ -4,7 +4,7 @@ set -euo pipefail
 
 # One-line bootstrap for a fresh macOS machine:
 #
-#   curl -fsSL https://raw.githubusercontent.com/hiramekun/dotfiles/main/.bin/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/hiramekun/dotfiles/main/install.sh | bash
 #
 # Homebrew is installed first because its installer also installs the Xcode
 # Command Line Tools (and therefore git), which are then used to clone this

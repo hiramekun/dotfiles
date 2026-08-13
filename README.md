@@ -18,7 +18,7 @@ On a fresh machine, one command provisions everything. It installs Homebrew
 this repository into `~/dotfiles` with that git, and runs the complete setup:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/hiramekun/dotfiles/main/.bin/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hiramekun/dotfiles/main/install.sh | bash
 ```
 
 If the repository is already cloned, run the bootstrap directly:
@@ -112,6 +112,7 @@ To install newly added plugins manually, run this inside Neovim:
 .
 ├── Brewfile           # Homebrew dependencies
 ├── mise.toml          # Runtimes, tools, dotfiles, macOS defaults, and tasks
+├── install.sh         # curl one-line bootstrap for a fresh machine
 ├── up                 # Bootstrap entry point
 ├── scripts/           # Provisioning and utility scripts
 ├── nvim/ and vim/     # Neovim and Vim configuration
