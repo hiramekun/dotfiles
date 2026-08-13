@@ -80,9 +80,7 @@ run_mise_task() {
   cd "$DOTFILES_PATH"
   mise trust "$DOTFILES_PATH/mise.toml"
 
-  # setup installs Homebrew dependencies before mise-managed tools explicitly.
-  # Disabling the task runner's eager installation preserves that ordering.
-  MISE_TASK_RUN_AUTO_INSTALL=false mise run "$@"
+  mise run "$@"
 }
 
 main() {
