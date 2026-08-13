@@ -8,10 +8,13 @@ mise. Ansible and asdf are no longer part of the setup.
 1. `up` bootstraps Homebrew and mise, trusts the repository config, and runs the
    requested mise task (`setup` by default).
 2. `mise.toml` is the provisioning entry point. It declares runtimes, developer
-   tools, and the task graph.
+   tools, the declarative `mise bootstrap` sections (`[dotfiles]`,
+   `[bootstrap.user]`, `[bootstrap.macos.*]`), and the task graph.
 3. `Brewfile` declares macOS applications and system-level packages.
-4. `scripts/link-dotfiles` creates safe, idempotent symlinks and backs up existing
-   destinations.
+4. The `[dotfiles]` table symlinks configuration into `$HOME`, applied by
+   `mise bootstrap dotfiles apply` (via the `link` task). Unlike the old
+   `scripts/link-dotfiles`, mise refuses to overwrite an existing real file
+   without `--force` and does not create `.bak` backups.
 5. `scripts/setup-vim` installs dein.vim and Neovim plugins.
 6. Shell activation lives in `shell/env.sh` and exposes the repository
    `mise.toml` as the global config for Bash and Zsh.
@@ -24,7 +27,8 @@ mise. Ansible and asdf are no longer part of the setup.
 mise run setup       # complete setup on an already-bootstrapped machine
 mise run brew        # install Brewfile dependencies
 mise run tools       # install mise-managed tools
-mise run link        # create dotfile symlinks
+mise run link        # symlink dotfiles from the [dotfiles] table
+mise run defaults    # apply login shell and macOS defaults
 mise run vim         # install/update Neovim plugins
 mise run doctor      # inspect mise and Homebrew health
 mise run test        # run tests
@@ -35,7 +39,9 @@ mise run test        # run tests
 - Keep versioned runtimes and standalone developer tools in `mise.toml`.
 - Keep macOS GUI applications, system libraries, and Homebrew-only tools in
   `Brewfile`.
-- Keep link mappings in `scripts/link-dotfiles`.
+- Keep dotfile link mappings in the `[dotfiles]` table of `mise.toml`.
+- Keep login-shell and macOS preferences in the `[bootstrap.*]` tables of
+  `mise.toml`.
 - Use `mise.local.toml` for uncommitted machine-specific mise overrides.
 
 The setup assumes macOS on Apple Silicon with Xcode Command Line Tools installed.

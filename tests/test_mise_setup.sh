@@ -21,10 +21,22 @@ assert config["settings"]["ruby"]["compile"] is False
 for tool in ("pipx:black", "pipx:flake8", "pipx:isort"):
     assert config["tools"][tool]["depends"] == ["uv"]
 
-required_tasks = {"setup", "brew", "tools", "link", "vim", "test", "doctor"}
+required_tasks = {"setup", "brew", "tools", "link", "defaults", "vim", "test", "doctor"}
 missing_tasks = required_tasks - config["tasks"].keys()
 assert not missing_tasks, f"missing mise tasks: {sorted(missing_tasks)}"
 assert "--no-upgrade" in config["tasks"]["brew"]["run"]
+
+# The link/defaults tasks delegate to the declarative `mise bootstrap` sections.
+assert "bootstrap dotfiles apply" in config["tasks"]["link"]["run"]
+assert any("bootstrap user apply" in step for step in config["tasks"]["defaults"]["run"])
+
+# Core dotfile mappings live in the [dotfiles] table with sources in the repo.
+dotfiles = config["dotfiles"]
+assert dotfiles["~/.zshrc"]["source"] == "zsh/.zshrc"
+assert dotfiles["~/.config/nvim"]["source"] == "nvim"
+assert all(entry["mode"] == "symlink" for entry in dotfiles.values())
+
+assert config["bootstrap"]["user"]["login_shell"] == "/bin/zsh"
 PY
 
 grep -q 'brew "mise"' "$REPO_ROOT/Brewfile"
@@ -43,7 +55,6 @@ if find "$REPO_ROOT/provisioning" -type f -print -quit 2>/dev/null | grep -q .; 
 fi
 
 bash -n "$REPO_ROOT/up"
-bash -n "$REPO_ROOT/scripts/link-dotfiles"
 bash -n "$REPO_ROOT/scripts/setup-vim"
 grep -q 'dein#check_install()' "$REPO_ROOT/scripts/setup-vim"
 if grep -q 'max_line_len' "$REPO_ROOT/nvim/init.vim"; then
@@ -51,22 +62,35 @@ if grep -q 'max_line_len' "$REPO_ROOT/nvim/init.vim"; then
   exit 1
 fi
 
-TEST_ROOT="$(mktemp -d)"
-trap 'rm -rf "$TEST_ROOT"' EXIT
-TEST_HOME="$TEST_ROOT/home"
-mkdir -p "$TEST_HOME"
-printf 'existing config\n' > "$TEST_HOME/.gitconfig"
+# The declarative [dotfiles] table is applied through `mise bootstrap`, so the
+# functional checks below need mise on PATH. Skip them gracefully otherwise.
+if command -v mise >/dev/null 2>&1; then
+  TEST_ROOT="$(mktemp -d)"
+  trap 'rm -rf "$TEST_ROOT"' EXIT
 
-DOTFILES_PATH="$REPO_ROOT" DOTFILES_HOME="$TEST_HOME" "$REPO_ROOT/scripts/link-dotfiles" >/dev/null
+  # A fresh $HOME with no conflicts: every entry is symlinked, and re-running is
+  # idempotent.
+  FRESH_HOME="$TEST_ROOT/fresh"
+  mkdir -p "$FRESH_HOME"
+  HOME="$FRESH_HOME" mise bootstrap dotfiles apply --yes >/dev/null
+  [ -L "$FRESH_HOME/.zshrc" ]
+  [ "$(readlink "$FRESH_HOME/.zshrc")" = "$REPO_ROOT/zsh/.zshrc" ]
+  [ -L "$FRESH_HOME/.config/nvim" ]
+  HOME="$FRESH_HOME" mise bootstrap dotfiles apply --yes >/dev/null
 
-[ -L "$TEST_HOME/.zshrc" ]
-[ "$(readlink "$TEST_HOME/.zshrc")" = "$REPO_ROOT/zsh/.zshrc" ]
-[ -L "$TEST_HOME/.gitconfig" ]
-[ -f "$TEST_HOME/.gitconfig.bak" ]
-grep -q 'existing config' "$TEST_HOME/.gitconfig.bak"
-
-# A second run must be idempotent and must not create another backup.
-DOTFILES_PATH="$REPO_ROOT" DOTFILES_HOME="$TEST_HOME" "$REPO_ROOT/scripts/link-dotfiles" >/dev/null
-[ ! -e "$TEST_HOME/.gitconfig.bak.1" ]
+  # An existing real file is never clobbered without --force: the apply aborts
+  # and leaves the original untouched (mise does not back up like the old
+  # scripts/link-dotfiles did).
+  CONFLICT_HOME="$TEST_ROOT/conflict"
+  mkdir -p "$CONFLICT_HOME"
+  printf 'existing config\n' > "$CONFLICT_HOME/.gitconfig"
+  if HOME="$CONFLICT_HOME" mise bootstrap dotfiles apply --yes >/dev/null 2>&1; then
+    printf 'dotfiles apply must refuse to overwrite existing files\n' >&2
+    exit 1
+  fi
+  grep -q 'existing config' "$CONFLICT_HOME/.gitconfig"
+else
+  printf 'mise not found; skipping dotfiles apply checks\n' >&2
+fi
 
 printf 'mise setup tests passed\n'
