@@ -40,6 +40,7 @@ After the initial setup, each area can be updated independently:
 | `mise run setup` | Run the complete setup |
 | `mise run brew` | Install missing Homebrew dependencies |
 | `mise run tools` | Install runtimes and development tools |
+| `mise run agents` | Install Claude Code and Codex with their official installers |
 | `mise run link` | Symlink dotfiles from the `[dotfiles]` table |
 | `mise run defaults` | Apply the login shell and macOS defaults |
 | `mise run vim` | Install dein.vim and Neovim plugins |

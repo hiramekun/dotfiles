@@ -21,10 +21,18 @@ assert config["settings"]["ruby"]["compile"] is False
 for tool in ("pipx:black", "pipx:flake8", "pipx:isort"):
     assert config["tools"][tool]["depends"] == ["uv"]
 
-required_tasks = {"setup", "brew", "tools", "link", "defaults", "vim", "test", "doctor"}
+required_tasks = {"setup", "brew", "tools", "agents", "link", "defaults", "vim", "test", "doctor"}
 missing_tasks = required_tasks - config["tasks"].keys()
 assert not missing_tasks, f"missing mise tasks: {sorted(missing_tasks)}"
 assert "--no-upgrade" in config["tasks"]["brew"]["run"]
+
+agent_installers = config["tasks"]["agents"]["run"]
+assert agent_installers == [
+    "curl -fsSL https://claude.ai/install.sh | bash",
+    "curl -fsSL https://chatgpt.com/codex/install.sh | sh",
+]
+setup_tasks = {step["task"] for step in config["tasks"]["setup"]["run"]}
+assert "agents" in setup_tasks
 
 # The link/defaults tasks delegate to the declarative `mise bootstrap` sections.
 assert "bootstrap dotfiles apply" in config["tasks"]["link"]["run"]

@@ -86,6 +86,7 @@ description = "Provision the complete macOS development environment"
 run = [
   { task = "brew" },
   { task = "tools" },
+  { task = "agents" },
   { task = "link" },
   { task = "defaults" },
   { task = "vim" },
@@ -98,6 +99,13 @@ run = "brew bundle --no-upgrade --file Brewfile"
 [tasks.tools]
 description = "Install runtimes and developer tools managed by mise"
 run = "mise install"
+
+[tasks.agents]
+description = "Install Claude Code and Codex with their official installers"
+run = [
+  "curl -fsSL https://claude.ai/install.sh | bash",
+  "curl -fsSL https://chatgpt.com/codex/install.sh | sh",
+]
 
 [tasks.link]
 description = "Symlink configuration files into $HOME from the [dotfiles] table"
