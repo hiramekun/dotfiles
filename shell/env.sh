@@ -17,7 +17,11 @@ export MISE_GLOBAL_CONFIG_ROOT="${MISE_GLOBAL_CONFIG_ROOT:-${DOTFILES_PATH:-$HOM
 # while still discovering project-level mise configuration below the home directory.
 export MISE_CEILING_PATHS="${MISE_CEILING_PATHS:-$HOME}"
 
-if command -v mise >/dev/null 2>&1 && [ -z "${MISE_SHELL:-}" ]; then
+# Activate unconditionally: `mise activate` is idempotent (it tears down any
+# previous hooks first), and MISE_SHELL is exported, so guarding on it would
+# skip activation in a nested shell that inherited the variable but not the
+# shell functions -- leaving that shell with a stale PATH and no chpwd hook.
+if command -v mise >/dev/null 2>&1; then
     if [ -n "${ZSH_VERSION:-}" ]; then
         eval "$(mise activate zsh)"
     elif [ -n "${BASH_VERSION:-}" ]; then
